@@ -10,19 +10,21 @@
 * Register your operator to eigenlayer using [Eigenlayer CLI](https://github.com/NethermindEth/eigenlayer/blob/develop/README.md)
 
 ### Setup EigenDA
-You can either download the docker compose file and the `.env` file from the repository or clone this repo.
+You can either clone this repo or download the docker compose file and the `.env` file from the repository.
+
+#### Clone repo
+Clone this repo and execute the following commands:
+```bash
+git clone https://github.comLayr-Labs/eigenda-operator-setup.git
+cd eigenda-operator-setup
+chmod +x run.sh
+```
+
 #### Download files
 ```bash
 wget https://raw.githubusercontent.com/Layr-Labs/eigenda-operator-setup/master/docker-compose.yml
 wget https://raw.githubusercontent.com/Layr-Labs/eigenda-operator-setup/master/.env
 wget https://raw.githubusercontent.com/Layr-Labs/eigenda-operator-setup/master/run.sh
-chmod +x run.sh
-```
-#### Clone repo 
-Clone this repo and execute the following commands:
-```bash
-git clone https://github.comLayr-Labs/eigenda-operator-setup.git
-cd eigenda-operator-setup
 chmod +x run.sh
 ```
 Update the `TODO` sections in the  `.env` file given in the root directory of the repository with your own details.:
