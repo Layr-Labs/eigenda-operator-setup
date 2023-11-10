@@ -14,6 +14,7 @@ services:
     environment:
       - REQUEST_LIMIT=1r/s
       - NODE_HOST=${MAIN_SERVICE_NAME}
+      - BURST_LIMIT=2
     env_file:
       - .env
   da-node:
