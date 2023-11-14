@@ -10,7 +10,7 @@
 * Register your operator to eigenlayer using [Eigenlayer CLI](https://github.com/NethermindEth/eigenlayer/blob/develop/README.md)
 
 ### Setup EigenDA
-You can either clone this repo or download the docker compose file and the `.env` file from the repository.
+The easiest way to set up EigenDA is to clone the repo and follow the instructions below.
 
 #### Clone repo
 Clone this repo and execute the following commands:

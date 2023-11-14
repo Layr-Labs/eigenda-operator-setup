@@ -12,9 +12,9 @@ services:
     networks:
       - eigenda
     environment:
-      - REQUEST_LIMIT=1r/s
+      - REQUEST_LIMIT=10r/s
       - NODE_HOST=${MAIN_SERVICE_NAME}
-      - BURST_LIMIT=2
+      - BURST_LIMIT=50
     env_file:
       - .env
   da-node:
