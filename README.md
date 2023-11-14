@@ -15,7 +15,7 @@ The easiest way to set up EigenDA is to clone the repo and follow the instructio
 #### Clone repo
 Clone this repo and execute the following commands:
 ```bash
-git clone https://github.comLayr-Labs/eigenda-operator-setup.git
+git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
 cd eigenda-operator-setup
 chmod +x run.sh
 ```
