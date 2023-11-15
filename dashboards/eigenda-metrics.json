@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -267,9 +267,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.1",
       "targets": [
         {
           "datasource": {
@@ -598,27 +599,15 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "avg_over_time(node_eigenda_current_batches{type=\"size\"}[$__rate_interval])",
+          "expr": "sum by(job) (node_eigenda_current_batches{type=\"size\"})\n/\nsum by(job) (node_eigenda_current_batches{type=\"number\"})",
           "fullMetaSearch": false,
+          "hide": false,
           "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A",
+          "refId": "B",
           "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "sum_over_time(node_eigenda_current_batches{type=\"size\"}[$__rate_interval])\n/\ncount_over_time(node_eigenda_current_batches{type=\"size\"}[$__rate_interval])",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
         }
       ],
       "title": "Average batch size",
@@ -890,9 +879,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.1",
       "targets": [
         {
           "datasource": {
@@ -1114,7 +1104,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "tags": [],
   "templating": {
@@ -1128,6 +1118,6 @@
   "timezone": "",
   "title": "EigenDA",
   "uid": "dcd9d495-ff1e-4794-b2b6-62634e4b40d1",
-  "version": 31,
+  "version": 2,
   "weekStart": ""
 }
