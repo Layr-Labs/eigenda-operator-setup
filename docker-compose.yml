@@ -16,7 +16,7 @@ services:
       - BURST_LIMIT=50
     env_file:
       - .env
-    restart: on-failure
+    restart: unless-stopped
   da-node:
     env_file:
       - .env
@@ -35,7 +35,7 @@ services:
       - ${NODE_CACHE_PATH_HOST}:/app/cache:rw
       - ${NODE_LOG_PATH_HOST}:/app/logs:rw
       - ${NODE_DB_PATH_HOST}:/data/operator/db:rw
-    restart: on-failure
+    restart: unless-stopped
 networks:
   eigenda:
     name: ${NETWORK_NAME}
