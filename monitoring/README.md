@@ -10,7 +10,7 @@ You can find that in eigenda [.env](../.env) file (`MAIN_SERVICE_NAME`)
 
 Once correct config is set up, run the following command to start the monitoring stack
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Since eigenda is running in a different docker network we will need to have prometheus in the same network. To do that, run the following command:
