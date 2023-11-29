@@ -27,6 +27,21 @@ mkdir -p $HOME/.eigenlayer/eigenda/logs
 mkdir -p $HOME/.eigenlayer/eigenda/db
 ```
 
+### Operator Networking Security Setup
+Retrieval Setup:
+
+In order for users to retrieve data from your node, you will need to open access to retrieval ports.
+
+Ensure the port specified as `NODE_RETRIEVAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/.env#L17) has open access to the public internet.
+
+Dispersal Setup:
+
+In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/.env#L14) in the below setup.
+
+* `3.221.120.68/32`
+* `52.2.226.152/32`
+* `18.214.113.214/32`
+
 ### Opt-in into EigenDA
 ```bash
 ./run.sh opt-in
@@ -45,6 +60,40 @@ you can view the logs using:
 ```
 docker logs -f <container_id>
 ```
+If you have successfully opted in to EigenDA and correctly running your EigenDA software, you should see the following logs for your EigenDA container:
+
+<figure><img src="https://lh7-us.googleusercontent.com/ChHGDKp5snAoYL8tDoK7Ass_5z8eimOnJm92ozW3HgoWNKstMUHl5Gpu9qc4Vki1szN_C5i4nMbhP08EbhFeS5-dQHb3F1Id4y1hRFbfn_UChMCFBFlK0M0INjfkqzphgfxswHBraDksxHzsvbxphQ0" alt=""><figcaption></figcaption></figure>
+
+The following example log messages confirm that your EigenDA node software is up and running:
+
+```
+2023/11/16 22:21:04 maxprocs: Leaving GOMAXPROCS=16: CPU quota undefined
+2023/11/16 22:21:04 Initializing Node
+2023/11/16 22:21:07     Reading G1 points (33554432 bytes) takes 14.636544ms
+2023/11/16 22:21:10     Parsing takes 3.173737274s
+2023/11/16 22:21:10     Reading G2 points (67108864 bytes) takes 29.762221ms
+2023/11/16 22:22:04     Parsing takes 53.962254668s
+numthread 16
+INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/common/logging/logging.go:65] Starting metrics server at port :9092    caller=logging.go:65
+INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/node/node.go:155]             Enabled metrics                          socket=:9092 caller=node.go:155
+INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/common/logging/logging.go:65] Starting node api server at address localhost:9091 caller=logging.go:65
+INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/node/node.go:159]             Enabled node api                         port=9091 caller=node.go:159
+INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/node/node.go:166]             Registering node with socket             socket=3.144.180.69:32005;32004 caller=node.go:166
+INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigensdk-go/nodeapi/nodeapi.go:240]   node api server running                  addr=localhost:9091 caller=nodeapi.go:240
+INFO [11-16|22:22:04.448|github.com/Layr-Labs/eigenda/node/grpc/server.go:119]      port                                     32004=address [::]:32004="GRPC Listening" caller=server.go:119
+INFO [11-16|22:22:04.448|github.com/Layr-Labs/eigenda/node/grpc/server.go:95]       port                                     32005=address [::]:32005="GRPC Listening" caller=server.go:95
+```
+
+The following example log messages confirm that your node is receiving traffic from the Disperser. If you do not see these log messages then either you have not successfully [opted-in to EigenDA](#opt-in-into-eigenda) or your [network security group](#operator-networking-security-setup) might not be setup correctly.
+
+```
+DEBUG[11-16|22:22:29.588|github.com/Layr-Labs/eigenda/node/node.go:275]             Store batch took                         duration:=84.214213ms caller=node.go:275
+DEBUG[11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:295]             Validate batch took                      duration:=511.828024ms caller=node.go:295
+TRACE[11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:306]             Signed batch header hash                 pubkey=0x13899af0fedf3378e90f6f377fe70edb9da35b43df5d94a770726fb4c2579df1112ed18cfd4390acc718aae6a60610e3313737f5e2e3403723f84a1752e47d731812c7c36b95c3e206fb44460e8470cc5ef274cbaae5d837d7d032bfb10c34a90d33dad25a1a1f19f453b2b6f0cef854fd381d9b876bcaf4a9562459b23c212d caller=node.go:306
+DEBUG[11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:309]             Sign batch took                          duration="372.962µs" caller=node.go:309
+INFO [11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:311]             StoreChunks succeeded                    caller=node.go:311
+DEBUG[11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:313]             Exiting process batch                    duration=512.422513ms caller=node.go:313
+```
 
 Tear down container
 ```bash
@@ -53,6 +102,36 @@ docker compose down
 ### Opt-out into EigenDA
 ```bash
 ./run.sh opt-out
+```
+### Upgrade your node
+
+Upgrade the AVS software for your EigenDA service setup by following the steps below:
+
+**Step 1:** Pull the latest repo
+
+```
+cd eigenda-operator-setup
+git pull
+```
+
+**Step 2:** Pull the latest docker images
+
+```
+docker compose pull
+```
+
+**Step 3:** Stop the existing services
+
+```
+docker compose down
+```
+
+**Step 4:** Start your services again
+
+If there are any specific instructions that needs to be followed for any upgrade, those instructions will be given with the release notes of the specific release. Please check the latest [release notes](https://github.com/Layr-Labs/eigenda-operator-setup/releases) on Github and follow the instructions before starting the services again.
+
+```
+docker compose up -d
 ```
 
 ## Metrics and Dashboard
