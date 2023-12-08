@@ -7,6 +7,7 @@ optIn() {
   socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
   echo "using socket: $socket"
   docker run --env-file .env \
+  --rm \
   --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
   --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
   --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
@@ -17,6 +18,7 @@ optIn() {
 
 optOut() {
   docker run --env-file .env \
+    --rm \
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
