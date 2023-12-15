@@ -128,6 +128,8 @@ docker compose down
 
 **Step 4:** Start your services again
 
+Make sure your [.env](.env) file still has correct values in the TODO sections before you restart your node.
+
 If there are any specific instructions that needs to be followed for any upgrade, those instructions will be given with the release notes of the specific release. Please check the latest [release notes](https://github.com/Layr-Labs/eigenda-operator-setup/releases) on Github and follow the instructions before starting the services again.
 
 ```
