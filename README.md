@@ -2,12 +2,12 @@
 
 ### Prerequisites:
 * Docker installed
-* Eigenlayer CLI installed
+* [EigenLayer CLI](https://github.com/Layr-Labs/eigenlayer-cli) installed
 
 > NOTE: For any Docker based commands, if you have installed as root then you might have to append `sudo` in front of the command.
 
 ### Core operations
-* Register your operator to eigenlayer using [Eigenlayer CLI](https://github.com/NethermindEth/eigenlayer/blob/develop/README.md)
+* Register your operator to eigenlayer using [EigenLayer CLI](https://github.com/Layr-Labs/eigenlayer-cli/blob/master/README.md)
 
 ### Setup EigenDA
 The easiest way to set up EigenDA is to clone the repo and follow the instructions below.
