@@ -45,6 +45,8 @@ In order to limit traffic from the EigenLabs hosted Disperser, please restrict y
 * `52.2.226.152/32`
 * `18.214.113.214/32`
 
+For users with private IP, you may need to perform port forwarding to open the dispersal ports. Refer to retrieval setup for more details.
+
 ### Opt-in into EigenDA
 ```bash
 ./run.sh opt-in
