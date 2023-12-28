@@ -30,9 +30,12 @@ mkdir -p $HOME/.eigenlayer/eigenda/db
 ### Operator Networking Security Setup
 Retrieval Setup:
 
-In order for users to retrieve data from your node, you will need to open access to retrieval ports.
+In order for users to retrieve data from your node, you will need to open access to retrieval ports. 
 
 Ensure the port specified as `NODE_RETRIEVAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/.env#L17) has open access to the public internet.
+
+For users with private IP e.g. connecting to the Internet via a router, you may need to perform port forwarding to open the retrieval ports. 
+Use a web browser and navigate to http://192.168.0.1 and set-up port forwarding according to instruction of your router.
 
 Dispersal Setup:
 
@@ -41,6 +44,8 @@ In order to limit traffic from the EigenLabs hosted Disperser, please restrict y
 * `3.221.120.68/32`
 * `52.2.226.152/32`
 * `18.214.113.214/32`
+
+For users with private IP, you may need to perform port forwarding to open the dispersal ports. Refer to retrieval setup for more details.
 
 ### Opt-in into EigenDA
 ```bash
