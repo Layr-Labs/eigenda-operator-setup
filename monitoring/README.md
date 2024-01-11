@@ -3,6 +3,10 @@ If you want to set up monitoring using docker, you can use the following command
 
 In the folder
 
+* Copy the [.env.example](./.env.example) file to `.env` file:
+```bash
+cp .env.example .env
+```
 * Make sure your prometheus config [file](./prometheus.yml) is updated with the metrics port (`NODE_METRICS_PORT`) of the eigenda node.
 * Make sure the eigenda container name is also set correctly in the prometheus config file. 
 You can find that in eigenda [.env](../.env) file (`MAIN_SERVICE_NAME`)
