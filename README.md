@@ -18,6 +18,7 @@ Clone this repo and execute the following commands:
 git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
 cd eigenda-operator-setup
 chmod +x run.sh
+cp .env.example .env
 ```
 Update the `TODO` sections in the  `.env` file given in the root directory of the repository with your own details.:
 
