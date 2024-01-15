@@ -220,7 +220,7 @@ docker run -d -p 3000:3000 --name=grafana grafana/grafana-enterprise
 ```
 
 You should be able to navigate to `http://localhost:3000` and login with `admin`/`admin`.
-You will need to add a datasource to Grafana. You can do this by navigating to `http://localhost:3000/datasources` and adding a Prometheus datasource. By default, the Prometheus server is running on `http://localhost:9090`. You can use this as the URL for the datasource.
+You will need to add a datasource to Grafana. You can do this by navigating to `http://localhost:3000/datasources` and adding a Prometheus datasource. By default, the Prometheus server is running on `http://localhost:9090`. You can use `http://prometheus:9090` as the server URL for the datasource.
 
 #### Useful Dashboards
 We also provide a set of useful Grafana dashboards which would be useful for monitoring the EigenDA node. You can find them [here](dashboards).
