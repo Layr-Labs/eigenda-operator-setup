@@ -27,5 +27,5 @@ This will make sure `prometheus` can scrape the metrics from `eigenda` node.
 
 
 #### Useful Dashboards
-We also provide a set of useful Grafana dashboards which would be useful for monitoring the EigenDA node. You can find them [here](../dashboards).
+We also provide a set of useful Grafana dashboards which would be useful for monitoring the EigenDA node. You can find them [here](dashboards).
 Once you have Grafana setup, feel free to import the dashboards.
