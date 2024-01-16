@@ -224,7 +224,7 @@ You will need to add a datasource to Grafana. You can do this by navigating to `
 
 #### Useful Dashboards
 We also provide a set of useful Grafana dashboards which would be useful for monitoring the EigenDA node. You can find them [here](monitoring/dashboards).
-Once you have Grafana setup, feel free to import the dashboards.
+Once you have Grafana setup, they should be automatically imported.
 
 ### Node exporter
 EigenDA emits DA specific metrics but, it's also important to keep track of the node's health. For this, we will use [Node Exporter](https://prometheus.io/docs/guides/node-exporter/) which is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
@@ -234,7 +234,6 @@ Install the binary or use docker to [run](https://hub.docker.com/r/prom/node-exp
 docker pull prom/node-exporter
 docker run -d -p 9100:9100 --name node-exporter prom/node-exporter
 ```
-In Grafana dashboard, import the [node-exporter](monitoring/dashboards/node-exporter.json) to see host metrics.
 
 ## Troubleshooting
 * If you see the following error:
