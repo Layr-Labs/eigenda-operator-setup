@@ -223,7 +223,7 @@ You should be able to navigate to `http://localhost:3000` and login with `admin`
 You will need to add a datasource to Grafana. You can do this by navigating to `http://localhost:3000/datasources` and adding a Prometheus datasource. By default, the Prometheus server is running on `http://localhost:9090`. You can use this as the URL for the datasource.
 
 #### Useful Dashboards
-We also provide a set of useful Grafana dashboards which would be useful for monitoring the EigenDA node. You can find them [here](dashboards).
+We also provide a set of useful Grafana dashboards which would be useful for monitoring the EigenDA node. You can find them [here](monitoring/dashboards).
 Once you have Grafana setup, feel free to import the dashboards.
 
 ### Node exporter
@@ -234,7 +234,7 @@ Install the binary or use docker to [run](https://hub.docker.com/r/prom/node-exp
 docker pull prom/node-exporter
 docker run -d -p 9100:9100 --name node-exporter prom/node-exporter
 ```
-In Grafana dashboard, import the [node-exporter](dashboards/node-exporter.json) to see host metrics.
+In Grafana dashboard, import the [node-exporter](monitoring/dashboards/node-exporter.json) to see host metrics.
 
 ## Troubleshooting
 * If you see the following error:
