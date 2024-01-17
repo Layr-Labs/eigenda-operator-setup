@@ -17,7 +17,7 @@ Once correct config is set up, run the following command to start the monitoring
 docker compose up -d
 ```
 
-Since eigenda is running in a different docker network we will need to have prometheus in the same network. To do that, run the following command:
+Since eigenda is running in a different docker network, the setup need to have prometheus running in the same network. To do that, run the following command:
 ```bash
 docker network connect eigenda-network prometheus
 ```
@@ -27,4 +27,4 @@ This will make sure `prometheus` can scrape the metrics from `eigenda` node.
 
 
 #### Useful Dashboards
-We also provide a set of useful Grafana dashboards that will be automatically imported when you start the monitoring stack.
+EigenDA offers a set of Grafana dashboards that are automatically imported when initializing the monitoring stack.

@@ -145,7 +145,7 @@ docker compose up -d
 ## Metrics and Dashboard
 
 ### Quickstart
-We provide a quickstart guide to run the Prometheus, Grafana, and Node exporter stack.
+EigenDA provide a quickstart guide to run the Prometheus, Grafana, and Node exporter stack.
 Checkout the README [here](monitoring/README.md) for more details. If you want to manually set this up, follow the steps below.
 
 ### Metrics
@@ -166,7 +166,7 @@ eigen_registered_stakes{avs_name="da-node",quorum_name="eth_quorum",quorum_numbe
 ...
 ```
 ### Prometheus
-We will use [prometheus](https://prometheus.io/download) to scrape the metrics from the EigenDA node.
+[Prometheus](https://prometheus.io/download) is being used to scrape the metrics from the EigenDA node.
 
 Create the following file in `$HOME/.eigenlayer/config/prometheus.yml`
 ```yaml
@@ -206,7 +206,7 @@ docker run -d \
 ```
 
 ### Grafana
-We will use grafana to visualize the metrics from the EigenDA node.
+Grafana is used to visualize the metrics from the EigenDA node.
 
 You can use [OSS Grafana](https://grafana.com/oss/grafana/) for it or any other Dashboard provider.
 
@@ -223,7 +223,7 @@ You should be able to navigate to `http://localhost:3000` and login with `admin`
 You will need to add a datasource to Grafana. You can do this by navigating to `http://localhost:3000/datasources` and adding a Prometheus datasource. By default, the Prometheus server is running on `http://localhost:9090`. You can use this as the URL for the datasource.
 
 #### Useful Dashboards
-We also provide a set of useful Grafana dashboards which would be useful for monitoring the EigenDA node. You can find them [here](monitoring/dashboards).
+EigenDA provides a set of Grafana dashboards that provide insights into key performance indicators and health metrics of an EigenDA node. These dashboards can be accessed [here](monitoring/dashboards).
 Once you have Grafana setup, they should be automatically imported.
 
 ### Node exporter
