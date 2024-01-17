@@ -9,8 +9,8 @@ cp .env.example .env
 ```
 * Make sure your prometheus config [file](./prometheus.yml) is updated with the metrics port (`NODE_METRICS_PORT`) of the eigenda node.
 * Make sure the eigenda container name is also set correctly in the prometheus config file. 
-You can find that in eigenda [.env](../.env) file (`MAIN_SERVICE_NAME`)
-* Make sure the location of prometheus file is correct in [.env](./.env) file
+You can find that in eigenda [.env](../.env.example) file (`MAIN_SERVICE_NAME`)
+* Make sure the location of prometheus file is correct in [.env](./.env.example) file
 
 Once correct config is set up, run the following command to start the monitoring stack
 ```bash
@@ -21,7 +21,7 @@ Since eigenda is running in a different docker network, the setup need to have p
 ```bash
 docker network connect eigenda-network prometheus
 ```
-Note: `eigenda-network` is the name of the network in which eigenda is running. You can check the network name in eigenda [.env](../.env) file (`NETWORK_NAME`).
+Note: `eigenda-network` is the name of the network in which eigenda is running. You can check the network name in eigenda [.env](../.env.example) file (`NETWORK_NAME`).
 
 This will make sure `prometheus` can scrape the metrics from `eigenda` node.
 
