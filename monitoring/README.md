@@ -17,7 +17,7 @@ Once correct config is set up, run the following command to start the monitoring
 docker compose up -d
 ```
 
-Since EigenDA is running in a different Docker network, the setup need to have Prometheus running in the same network. To do that, run the following command:
+Your setup should ensure Prometheus is run in the same Docker network as EigenDA. Run the following command for this purpose:
 ```bash
 docker network connect eigenda-network prometheus
 ```
