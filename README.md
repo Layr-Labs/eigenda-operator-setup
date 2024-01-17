@@ -7,7 +7,7 @@
 > NOTE: For any Docker based commands, if you have installed as root then you might have to append `sudo` in front of the command.
 
 ### Core operations
-* Register your operator to eigenlayer using [EigenLayer CLI](https://github.com/Layr-Labs/eigenlayer-cli/blob/master/README.md)
+* Register your operator to EigenLayer using [EigenLayer CLI](https://github.com/Layr-Labs/eigenlayer-cli/blob/master/README.md)
 
 ### Setup EigenDA
 The easiest way to set up EigenDA is to clone the repo and follow the instructions below.
@@ -40,7 +40,7 @@ Use a web browser and navigate to http://192.168.0.1 and set-up port forwarding 
 
 Dispersal Setup:
 
-In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/.env#L14) in the below setup.
+In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/.env#L14) in the below setup.
 
 * `3.221.120.68/32`
 * `52.2.226.152/32`
@@ -68,37 +68,57 @@ docker logs -f <container_id>
 ```
 If you have successfully opted in to EigenDA and correctly running your EigenDA software, you should see the following logs for your EigenDA container:
 
-<figure><img src="https://lh7-us.googleusercontent.com/ChHGDKp5snAoYL8tDoK7Ass_5z8eimOnJm92ozW3HgoWNKstMUHl5Gpu9qc4Vki1szN_C5i4nMbhP08EbhFeS5-dQHb3F1Id4y1hRFbfn_UChMCFBFlK0M0INjfkqzphgfxswHBraDksxHzsvbxphQ0" alt=""><figcaption></figcaption></figure>
+[![image](./images/eigenda-logs.png)](./images/eigenda-logs.png)
 
 The following example log messages confirm that your EigenDA node software is up and running:
 
 ```
-2023/11/16 22:21:04 maxprocs: Leaving GOMAXPROCS=16: CPU quota undefined
-2023/11/16 22:21:04 Initializing Node
-2023/11/16 22:21:07     Reading G1 points (33554432 bytes) takes 14.636544ms
-2023/11/16 22:21:10     Parsing takes 3.173737274s
-2023/11/16 22:21:10     Reading G2 points (67108864 bytes) takes 29.762221ms
-2023/11/16 22:22:04     Parsing takes 53.962254668s
+2024/01/09 23:42:28 maxprocs: Leaving GOMAXPROCS=16: CPU quota undefined
+2024/01/09 23:42:28 Initializing Node
+2024/01/09 23:42:32     Reading G1 points (33554432 bytes) takes 13.362879ms
+2024/01/09 23:42:36     Parsing takes 3.60454026s
+2024/01/09 23:42:36     Reading G2 points (67108864 bytes) takes 28.110653ms
+2024/01/09 23:43:37     Parsing takes 1m1.676967232s
 numthread 16
-INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/common/logging/logging.go:65] Starting metrics server at port :9092    caller=logging.go:65
-INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/node/node.go:155]             Enabled metrics                          socket=:9092 caller=node.go:155
-INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/common/logging/logging.go:65] Starting node api server at address localhost:9091 caller=logging.go:65
-INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/node/node.go:159]             Enabled node api                         port=9091 caller=node.go:159
-INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigenda/node/node.go:166]             Registering node with socket             socket=3.144.180.69:32005;32004 caller=node.go:166
-INFO [11-16|22:22:04.447|github.com/Layr-Labs/eigensdk-go/nodeapi/nodeapi.go:240]   node api server running                  addr=localhost:9091 caller=nodeapi.go:240
-INFO [11-16|22:22:04.448|github.com/Layr-Labs/eigenda/node/grpc/server.go:119]      port                                     32004=address [::]:32004="GRPC Listening" caller=server.go:119
-INFO [11-16|22:22:04.448|github.com/Layr-Labs/eigenda/node/grpc/server.go:95]       port                                     32005=address [::]:32005="GRPC Listening" caller=server.go:95
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/common/logging/logging.go:65] Starting metrics server at port :9092    caller=logging.go:65
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/node/node.go:170]             Enabled metrics                          socket=:9092 caller=node.go:170
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/common/logging/logging.go:65] Starting node api server at address localhost:9091 caller=logging.go:65
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/node/node.go:174]             Enabled node api                         port=9091 caller=node.go:174
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/common/logging/logging.go:65] The node has successfully started. Note: if it's not opted in on https://goerli.eigenlayer.xyz/avs/eigenda, then please follow the EigenDA operator guide section in docs.eigenlayer.xyz to register caller=logging.go:65
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigensdk-go/nodeapi/nodeapi.go:240]   node api server running                  addr=localhost:9091 caller=nodeapi.go:240
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/node/node.go:391]             Start checkCurrentNodeIp goroutine in background to detect the current public IP of the operator node caller=node.go:391
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/node/grpc/server.go:95]       port                                     32005=address [::]:32005="GRPC Listening" caller=server.go:95
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/node/node.go:220]             Start expireLoop goroutine in background to periodically remove expired batches on the node caller=node.go:220
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/node/node.go:368]             Start checkRegisteredNodeIpOnChain goroutine in background to subscribe the operator socket change events onchain caller=node.go:368
+INFO [01-09|23:43:38.284|github.com/Layr-Labs/eigenda/node/grpc/server.go:119]      port                                     32004=address [::]:32004="GRPC Listening" caller=server.go:119
 ```
 
 The following example log messages confirm that your node is receiving traffic from the Disperser. If you do not see these log messages then either you have not successfully [opted-in to EigenDA](#opt-in-into-eigenda) or your [network security group](#operator-networking-security-setup) might not be setup correctly.
 
 ```
-DEBUG[11-16|22:22:29.588|github.com/Layr-Labs/eigenda/node/node.go:275]             Store batch took                         duration:=84.214213ms caller=node.go:275
-DEBUG[11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:295]             Validate batch took                      duration:=511.828024ms caller=node.go:295
-TRACE[11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:306]             Signed batch header hash                 pubkey=0x13899af0fedf3378e90f6f377fe70edb9da35b43df5d94a770726fb4c2579df1112ed18cfd4390acc718aae6a60610e3313737f5e2e3403723f84a1752e47d731812c7c36b95c3e206fb44460e8470cc5ef274cbaae5d837d7d032bfb10c34a90d33dad25a1a1f19f453b2b6f0cef854fd381d9b876bcaf4a9562459b23c212d caller=node.go:306
-DEBUG[11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:309]             Sign batch took                          duration="372.962µs" caller=node.go:309
-INFO [11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:311]             StoreChunks succeeded                    caller=node.go:311
-DEBUG[11-16|22:22:30.016|github.com/Layr-Labs/eigenda/node/node.go:313]             Exiting process batch                    duration=512.422513ms caller=node.go:313
+DEBUG[01-09|23:44:10.078|github.com/Layr-Labs/eigenda/node/node.go:298]             Store batch took                         duration:=5.831581ms caller=node.go:298
+Batch verify 13 frames of 512 symbols out of 1 blobs
+Batch verify 450 frames of 2 symbols out of 50 blobs
+DEBUG[01-09|23:44:10.153|github.com/Layr-Labs/eigenda/node/node.go:318]             Validate batch took                      duration:=80.907297ms caller=node.go:318
+TRACE[01-09|23:44:10.153|github.com/Layr-Labs/eigenda/node/node.go:329]             Signed batch header hash                 pubkey=0x2543eddc5dd2d29190be84f323e17cef8f795970d71cc14db635a613b86ae3942bb9f8787d7197b230d450210c694361a2100531d150f5a94c2905a224c4ee390beba2c7e3166506359b7ac43fe9603e7bd981b28447c3ed6b28a7d263274cc717263cb88a192ccaaa76bb68308beaa01ef93b862b98c86ba48b69f8c153ad27 caller=node.go:329
+DEBUG[01-09|23:44:10.153|github.com/Layr-Labs/eigenda/node/node.go:332]             Sign batch took                          duration="365.481µs" caller=node.go:332
+INFO [01-09|23:44:10.153|github.com/Layr-Labs/eigenda/node/node.go:334]             StoreChunks succeeded                    caller=node.go:334
+DEBUG[01-09|23:44:10.153|github.com/Layr-Labs/eigenda/node/node.go:336]             Exiting process batch                    duration=81.474727ms caller=node.go:336
+DEBUG[01-09|23:44:59.727|github.com/Layr-Labs/eigenda/node/node.go:298]             Store batch took                         duration:=3.972838ms  caller=node.go:298
+Batch verify 8 frames of 4 symbols out of 1 blobs
+Batch verify 432 frames of 2 symbols out of 48 blobs
+DEBUG[01-09|23:44:59.805|github.com/Layr-Labs/eigenda/node/node.go:318]             Validate batch took                      duration:=82.711666ms caller=node.go:318
+TRACE[01-09|23:44:59.806|github.com/Layr-Labs/eigenda/node/node.go:329]             Signed batch header hash                 pubkey=0x2543eddc5dd2d29190be84f323e17cef8f795970d71cc14db635a613b86ae3942bb9f8787d7197b230d450210c694361a2100531d150f5a94c2905a224c4ee390beba2c7e3166506359b7ac43fe9603e7bd981b28447c3ed6b28a7d263274cc717263cb88a192ccaaa76bb68308beaa01ef93b862b98c86ba48b69f8c153ad27 caller=node.go:329
+DEBUG[01-09|23:44:59.806|github.com/Layr-Labs/eigenda/node/node.go:332]             Sign batch took                          duration="370.048µs" caller=node.go:332
+INFO [01-09|23:44:59.806|github.com/Layr-Labs/eigenda/node/node.go:334]             StoreChunks succeeded                    caller=node.go:334
+DEBUG[01-09|23:44:59.806|github.com/Layr-Labs/eigenda/node/node.go:336]             Exiting process batch                    duration=83.241162ms caller=node.go:336
+DEBUG[01-09|23:45:49.698|github.com/Layr-Labs/eigenda/node/node.go:298]             Store batch took                         duration:=4.118867ms  caller=node.go:298
+Batch verify 477 frames of 2 symbols out of 53 blobs
+DEBUG[01-09|23:45:49.771|github.com/Layr-Labs/eigenda/node/node.go:318]             Validate batch took                      duration:=77.685497ms caller=node.go:318
+TRACE[01-09|23:45:49.771|github.com/Layr-Labs/eigenda/node/node.go:329]             Signed batch header hash                 pubkey=0x2543eddc5dd2d29190be84f323e17cef8f795970d71cc14db635a613b86ae3942bb9f8787d7197b230d450210c694361a2100531d150f5a94c2905a224c4ee390beba2c7e3166506359b7ac43fe9603e7bd981b28447c3ed6b28a7d263274cc717263cb88a192ccaaa76bb68308beaa01ef93b862b98c86ba48b69f8c153ad27 caller=node.go:329
+DEBUG[01-09|23:45:49.771|github.com/Layr-Labs/eigenda/node/node.go:332]             Sign batch took                          duration="345.3µs"   caller=node.go:332
+INFO [01-09|23:45:49.772|github.com/Layr-Labs/eigenda/node/node.go:334]             StoreChunks succeeded                    caller=node.go:334
+DEBUG[01-09|23:45:49.772|github.com/Layr-Labs/eigenda/node/node.go:336]             Exiting process batch                    duration=78.216395ms caller=node.go:336
 ```
 
 Tear down container
@@ -120,7 +140,7 @@ cd eigenda-operator-setup
 git pull
 ```
 
-**Step 2:** Pull the latest docker images
+**Step 2:** Pull the latest Docker images
 
 ```
 docker compose pull
@@ -145,7 +165,7 @@ docker compose up -d
 ## Metrics and Dashboard
 
 ### Quickstart
-EigenDA provide a quickstart guide to run the Prometheus, Grafana, and Node exporter stack.
+EigenDA provides a quickstart guide to run the Prometheus, Grafana, and Node exporter stack.
 Checkout the README [here](monitoring/README.md) for more details. If you want to manually set this up, follow the steps below.
 
 ### Metrics
@@ -192,12 +212,12 @@ scrape_configs:
       - targets: ["localhost:<NODE_METRICS_PORT>"]
 ```
 
-Start prometheus
+Start Prometheus
 ```bash
 prometheus --config.file="$HOME/.eigenlayer/config/prometheus.yml"
 ```
 
-If you want to use docker, follow [this](https://prometheus.io/docs/prometheus/latest/installation/#volumes-bind-mount) link.
+If you want to use Docker, follow [this](https://prometheus.io/docs/prometheus/latest/installation/#volumes-bind-mount) link.
 ```bash
 docker run -d \
     -p 9090:9090 \
@@ -214,7 +234,7 @@ Start the Grafana server
 ```bash
 grafana server
 ```
-You can also use [docker](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/)
+You can also use [Docker](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/)
 ```bash
 docker run -d -p 3000:3000 --name=grafana grafana/grafana-enterprise
 ```
@@ -228,7 +248,7 @@ Once you have Grafana setup, they should be automatically imported.
 
 ### Node exporter
 EigenDA emits DA specific metrics but, it's also important to keep track of the node's health. For this, we will use [Node Exporter](https://prometheus.io/docs/guides/node-exporter/) which is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
-Install the binary or use docker to [run](https://hub.docker.com/r/prom/node-exporter) it.
+Install the binary or use Docker to [run](https://hub.docker.com/r/prom/node-exporter) it.
 
 ```bash
 docker pull prom/node-exporter
