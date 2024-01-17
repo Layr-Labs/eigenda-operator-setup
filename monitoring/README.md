@@ -1,5 +1,5 @@
-## Setup monitoring using docker
-If you want to set up monitoring using docker, you can use the following commands:
+## Setup monitoring using Docker
+If you want to set up monitoring using Docker, you can use the following commands:
 
 In the folder
 
@@ -7,25 +7,24 @@ In the folder
 ```bash
 cp .env.example .env
 ```
-* Make sure your prometheus config [file](./prometheus.yml) is updated with the metrics port (`NODE_METRICS_PORT`) of the eigenda node.
-* Make sure the eigenda container name is also set correctly in the prometheus config file. 
-You can find that in eigenda [.env](../.env) file (`MAIN_SERVICE_NAME`)
-* Make sure the location of prometheus file is correct in [.env](./.env) file
+* Make sure your Prometheus config [file](./prometheus.yml) is updated with the metrics port (`NODE_METRICS_PORT`) of the EigenDA node.
+* Make sure the EigenDA container name is also set correctly in the Prometheus config file. 
+You can find that in EigenDA [.env](../.env.example) file (`MAIN_SERVICE_NAME`)
+* Make sure the location of prometheus file is correct in [.env](./.env.example) file
 
 Once correct config is set up, run the following command to start the monitoring stack
 ```bash
 docker compose up -d
 ```
 
-Since eigenda is running in a different docker network we will need to have prometheus in the same network. To do that, run the following command:
+Your setup should ensure Prometheus is run in the same Docker network as EigenDA. Run the following command for this purpose:
 ```bash
 docker network connect eigenda-network prometheus
 ```
-Note: `eigenda-network` is the name of the network in which eigenda is running. You can check the network name in eigenda [.env](../.env) file (`NETWORK_NAME`).
+Note: `eigenda-network` is the name of the network in which EigenDA is running. You can check the network name in EigenDA [.env](../.env.example) file (`NETWORK_NAME`).
 
-This will make sure `prometheus` can scrape the metrics from `eigenda` node.
+This will make sure `Prometheus` can scrape the metrics from `EigenDA` node.
 
 
 #### Useful Dashboards
-We also provide a set of useful Grafana dashboards which would be useful for monitoring the EigenDA node. You can find them [here](../dashboards).
-Once you have Grafana setup, feel free to import the dashboards.
+EigenDA offers a set of Grafana dashboards that are automatically imported when initializing the monitoring stack.

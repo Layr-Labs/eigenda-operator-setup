@@ -6,6 +6,7 @@ networks:
 
 volumes:
   prometheus_data: {}
+  grafana_data: {}
 
 services:
   node-exporter:
@@ -49,12 +50,14 @@ services:
     image: grafana/grafana
     container_name: grafana
     ports:
-      - 3000:3000
+      - "3000:3000"
     restart: unless-stopped
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
+      - grafana_data:/var/lib/grafana
       - ./grafana:/etc/grafana/provisioning/datasources
+      - ./dashboards:/etc/grafana/provisioning/dashboards
     networks:
       - monitoring
