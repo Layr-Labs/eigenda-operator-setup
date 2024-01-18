@@ -3,6 +3,11 @@
 
 . ./.env
 
+# In both opt-in and opt-out, We have to explicitly set the password again here because
+# when docker run loads the `.env` file, it keeps the quotes around the password
+# which causes the password to be incorrect.
+# To test that try running `docker run --rm --env-file .env busybox /bin/sh -c 'echo $NODE_ECDSA_KEY_PASSWORD'`
+# This will output password with single quote. Not sure why this happens.
 optIn() {
   socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
   echo "using socket: $socket"
@@ -12,6 +17,8 @@ optIn() {
   --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
   --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
   ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.2.1 \
+  --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
+  --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
   --operation opt-in \
   --socket "$socket"
 }
@@ -24,6 +31,8 @@ optOut() {
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
     ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.2.1 \
+    --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
+    --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
     --operation opt-out \
     --socket "$socket"
 }
