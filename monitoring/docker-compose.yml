@@ -34,7 +34,7 @@ services:
     container_name: prometheus
     restart: unless-stopped
     volumes:
-      - ${PROMETHEUS_CONFIG_FILE_HOST}:/etc/prometheus/prometheus.yml
+      - "${PROMETHEUS_CONFIG_FILE_HOST}:/etc/prometheus/prometheus.yml"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -56,8 +56,8 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana:/etc/grafana/provisioning/datasources
-      - ./dashboards:/etc/grafana/provisioning/dashboards
+      - "grafana_data:/var/lib/grafana"
+      - "./grafana:/etc/grafana/provisioning/datasources"
+      - "./dashboards:/etc/grafana/provisioning/dashboards"
     networks:
       - monitoring
