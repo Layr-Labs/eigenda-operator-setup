@@ -5,15 +5,15 @@ services:
     ports:
       - "${NODE_RETRIEVAL_PORT}:${NODE_RETRIEVAL_PORT}"
     volumes:
-      - ${NODE_NGINX_CONF_HOST}:/etc/nginx/templates/default.conf.template:ro
+      - "${NODE_NGINX_CONF_HOST}:/etc/nginx/templates/default.conf.template:ro"
     depends_on:
       - da-node
     networks:
       - eigenda
     environment:
-      - REQUEST_LIMIT=10r/s
-      - NODE_HOST=${MAIN_SERVICE_NAME}
-      - BURST_LIMIT=50
+      - "REQUEST_LIMIT=10r/s"
+      - "NODE_HOST=${MAIN_SERVICE_NAME}"
+      - "BURST_LIMIT=50"
     env_file:
       - .env
     restart: unless-stopped
@@ -28,13 +28,13 @@ services:
     networks:
       - eigenda
     volumes:
-      - ${NODE_ECDSA_KEY_FILE_HOST}:/app/operator_keys/ecdsa_key.json:readonly
-      - ${NODE_BLS_KEY_FILE_HOST}:/app/operator_keys/bls_key.json:readonly
-      - ${NODE_G1_PATH_HOST}:/app/g1.point:readonly
-      - ${NODE_G2_PATH_HOST}:/app/g2.point:readonly
-      - ${NODE_CACHE_PATH_HOST}:/app/cache:rw
-      - ${NODE_LOG_PATH_HOST}:/app/logs:rw
-      - ${NODE_DB_PATH_HOST}:/data/operator/db:rw
+      - "${NODE_ECDSA_KEY_FILE_HOST}:/app/operator_keys/ecdsa_key.json:readonly"
+      - "${NODE_BLS_KEY_FILE_HOST}:/app/operator_keys/bls_key.json:readonly"
+      - "${NODE_G1_PATH_HOST}:/app/g1.point:readonly"
+      - "${NODE_G2_PATH_HOST}:/app/g2.point:readonly"
+      - "${NODE_CACHE_PATH_HOST}:/app/cache:rw"
+      - "${NODE_LOG_PATH_HOST}:/app/logs:rw"
+      - "${NODE_DB_PATH_HOST}:/data/operator/db:rw"
     restart: unless-stopped
 networks:
   eigenda:
