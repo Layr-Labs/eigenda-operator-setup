@@ -3,12 +3,12 @@
   "groups": [
     {
       "orgId": 1,
-      "name": "EigenDA evaluation",
-      "folder": "EigenDA Alerts",
+      "name": "EigenDA Group",
+      "folder": "alerts",
       "interval": "5m",
       "rules": [
         {
-          "uid": "f91474c2-a5e9-4826-8e14-492aee8def6e",
+          "uid": "e6ed7f3d-dc76-412f-805d-93227be6c822",
           "title": "EigenDA number of processed batches",
           "condition": "E",
           "data": [
@@ -69,7 +69,7 @@
             {
               "refId": "C",
               "relativeTimeRange": {
-                "from": 3600,
+                "from": 0,
                 "to": 0
               },
               "datasourceUid": "__expr__",
@@ -110,7 +110,7 @@
             {
               "refId": "D",
               "relativeTimeRange": {
-                "from": 3600,
+                "from": 0,
                 "to": 0
               },
               "datasourceUid": "__expr__",
@@ -143,6 +143,7 @@
                   "uid": "__expr__"
                 },
                 "expression": "B",
+                "hide": false,
                 "intervalMs": 1000,
                 "maxDataPoints": 43200,
                 "reducer": "max",
@@ -153,7 +154,7 @@
             {
               "refId": "E",
               "relativeTimeRange": {
-                "from": 600,
+                "from": 0,
                 "to": 0
               },
               "datasourceUid": "__expr__",
@@ -186,6 +187,7 @@
                   "uid": "__expr__"
                 },
                 "expression": "$C == $D",
+                "hide": false,
                 "intervalMs": 1000,
                 "maxDataPoints": 43200,
                 "refId": "E",
@@ -195,13 +197,12 @@
           ],
           "dasboardUid": "dcd9d495-ff1e-4794-b2b6-62634e4b40d1",
           "panelId": 9,
-          "noDataState": "Alerting",
-          "execErrState": "Alerting",
+          "noDataState": "NoData",
+          "execErrState": "Error",
           "for": "5m",
           "annotations": {
             "__dashboardUid__": "dcd9d495-ff1e-4794-b2b6-62634e4b40d1",
-            "__panelId__": "9",
-            "summary": "Your node might not be signing EigenDA blobs"
+            "__panelId__": "9"
           },
           "labels": {},
           "isPaused": false

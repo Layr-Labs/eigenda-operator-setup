@@ -55,9 +55,11 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
     volumes:
       - "grafana_data:/var/lib/grafana"
       - "./grafana:/etc/grafana/provisioning/datasources"
       - "./dashboards:/etc/grafana/provisioning/dashboards"
+      - ./alerts:/etc/grafana/provisioning/alerts
     networks:
       - monitoring
