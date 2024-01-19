@@ -256,6 +256,20 @@ docker pull prom/node-exporter
 docker run -d -p 9100:9100 --name node-exporter prom/node-exporter
 ```
 
+### Blob scraper
+
+The [eigenda-blob-scraper](https://github.com/NethermindEth/eigenda-blob-scrapper) is an application developed by Nethermind that gets the blob data in a JSON form from an EigenDA public endpoint and transforms it into Prometheus metrics every `FETCH_INTERVAL` seconds. The metrics are then exposed via a Prometheus server at port 9600.
+
+The tool is deployed via Docker image to DockerHub. The image can be found here: https://hub.docker.com/repository/docker/nethermind/eigenda-blob-scraper.
+
+The scraper is included in the docker-compose file and must be added as a prometheus target in the prometheus.yml file as shown in the `monitoring/prometheus.yml` file.
+
+You can use the following PromQL query to see if there has been requested blobs in the last 10 minutes:
+
+```
+(requested_at{} - (time() - (10 * 60))) > 0 and (requested_at{} - time()) <= 0
+```
+
 ## Troubleshooting
 * If you see the following error:
     ```

@@ -36,6 +36,16 @@ services:
       - "${NODE_LOG_PATH_HOST}:/app/logs:rw"
       - "${NODE_DB_PATH_HOST}:/data/operator/db:rw"
     restart: unless-stopped
+  scraper:
+    image: nethermind/eigenda-blob-scraper:latest
+    expose:
+      - "9600"
+    networks:
+      - eigenda
+    environment:
+      - FETCH_INTERVAL=60
+      - API_URL=https://blobs-goerli.eigenda.xyz/api/trpc/blobs.getBlobs
+    restart: unless-stopped
 networks:
   eigenda:
     name: ${NETWORK_NAME}
