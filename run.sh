@@ -8,6 +8,18 @@
 # which causes the password to be incorrect.
 # To test that try running `docker run --rm --env-file .env busybox /bin/sh -c 'echo $NODE_ECDSA_KEY_PASSWORD'`
 # This will output password with single quote. Not sure why this happens.
+# Function to read Docker secrets
+read_secret() {
+  secret_name=$1
+  secret_path="/run/secrets/$secret_name"
+  if [ -f "$secret_path" ]; then
+    cat "$secret_path"
+  else
+    echo "Error: Secret $secret_name not found."
+    exit 1
+  fi
+}
+
 optIn() {
   socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
   echo "using socket: $socket"
@@ -16,9 +28,9 @@ optIn() {
   --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
   --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
   --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
+  --volume "ecdsa_key_password:/run/secrets/ecdsa_key_password:ro" \
+  --volume "bls_key_password:/run/secrets/bls_key_password:ro" \
   ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.2.1 \
-  --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
-  --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
   --operation opt-in \
   --socket "$socket"
 }
@@ -30,9 +42,9 @@ optOut() {
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
+    --volume "ecdsa_key_password:/run/secrets/ecdsa_key_password:ro" \
+    --volume "bls_key_password:/run/secrets/bls_key_password:ro" \
     ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.2.1 \
-    --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
-    --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
     --operation opt-out \
     --socket "$socket"
 }

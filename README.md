@@ -22,6 +22,11 @@ cp .env.example .env
 ```
 Update the `TODO` sections in the  `.env` file given in the root directory of the repository with your own details.:
 
+### Create Docker Secrets
+```bash
+echo "your_ecdsa_password" | docker secret create ecdsa_key_password -
+echo "your_bls_password" | docker secret create bls_key_password -
+```
 ### Create some local folders which are required by EigenDA
 ```bash
 mkdir -p $HOME/.eigenlayer/eigenda/logs
