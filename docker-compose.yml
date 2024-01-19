@@ -20,6 +20,9 @@ services:
   da-node:
     env_file:
       - .env
+    secrets:
+      - ecdsa_key_password
+      - bls_key_password
     container_name: ${MAIN_SERVICE_NAME}
     image: ${MAIN_SERVICE_IMAGE}
     ports:
@@ -36,6 +39,11 @@ services:
       - "${NODE_LOG_PATH_HOST}:/app/logs:rw"
       - "${NODE_DB_PATH_HOST}:/data/operator/db:rw"
     restart: unless-stopped
+secrets:
+  ecdsa_key_password:
+    external: true
+  bls_key_password:
+    external: true
 networks:
   eigenda:
     name: ${NETWORK_NAME}
