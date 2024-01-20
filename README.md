@@ -62,7 +62,7 @@ docker compose up -d
 It will start the node and nginx containers and if you do `docker ps` you should see something like this:
 ![image](./images/node-up.png)
 
-you can view the logs using:
+You can view the logs using:
 ```
 docker logs -f <container_id>
 ```
