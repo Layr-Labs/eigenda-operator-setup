@@ -126,7 +126,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "node_eigenda_processed_batches_total{type=\"number\", status=\"stored\"}",
+          "expr": "node_eigenda_processed_batches_total{type=\"number\", status=\"signed\"}",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
