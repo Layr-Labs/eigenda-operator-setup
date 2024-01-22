@@ -20,7 +20,7 @@ cd eigenda-operator-setup
 chmod +x run.sh
 cp .env.example .env
 ```
-Update the `TODO` sections in the  `.env` file given in the root directory of the repository with your own details.:
+Update the `TODO` sections in the  `.env` file given in the root directory of the repository with your own details.
 
 ### Create some local folders which are required by EigenDA
 ```bash
@@ -121,7 +121,7 @@ INFO [01-09|23:45:49.772|github.com/Layr-Labs/eigenda/node/node.go:334]         
 DEBUG[01-09|23:45:49.772|github.com/Layr-Labs/eigenda/node/node.go:336]             Exiting process batch                    duration=78.216395ms caller=node.go:336
 ```
 
-Tear down container
+Tear down container:
 ```bash
 docker compose down
 ```
