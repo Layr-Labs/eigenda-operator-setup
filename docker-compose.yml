@@ -4,6 +4,7 @@ services:
     image: nginx:latest
     ports:
       - "${NODE_RETRIEVAL_PORT}:${NODE_RETRIEVAL_PORT}"
+      - "${NODE_API_PORT}:${NODE_API_PORT}"
     volumes:
       - "${NODE_NGINX_CONF_HOST}:/etc/nginx/templates/default.conf.template:ro"
     depends_on:
