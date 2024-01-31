@@ -101,7 +101,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "eigen_performance_score,
+          "expr": "eigen_performance_score",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
