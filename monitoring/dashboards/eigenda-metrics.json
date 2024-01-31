@@ -18,14 +18,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 12,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "the total number of batches processed by the DA node",
       "fieldConfig": {
@@ -114,7 +114,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -131,7 +131,7 @@
           "hide": true,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "B",
           "useBackend": false
@@ -143,7 +143,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "the total size of batches processed by the DA node",
       "fieldConfig": {
@@ -232,7 +232,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -244,7 +244,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "the total number  of batches that have been removed by the DA node",
       "fieldConfig": {
@@ -328,11 +328,11 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "node_eigenda_removed_batches_total{type=\"number\"}",
+          "expr": "node_eigenda_processed_batches_total{type=\"number\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -344,7 +344,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "the total size of batches that have been removed by the DA node",
       "fieldConfig": {
@@ -429,11 +429,11 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "node_eigenda_removed_batches_total{type=\"size\"} / 1024",
+          "expr": "node_eigenda_processed_batches_total{type=\"size\"} / 1024",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -445,7 +445,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -565,7 +565,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -651,26 +651,9 @@
           "expr": "sum(node_eigenda_processed_batches_total{type=\"size\"})\n/\nsum(node_eigenda_processed_batches_total{type=\"number\"})",
           "hide": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "average size",
           "range": true,
           "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "node_eigenda_processed_batches_total{type=\"size\"}",
-          "fullMetaSearch": false,
-          "hide": true,
-          "includeNullMetadata": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
         }
       ],
       "title": "Average processed batch size",
@@ -679,7 +662,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -723,7 +706,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -766,7 +750,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -778,7 +762,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -822,7 +806,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -864,7 +849,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "node_request_latency_ms{quantile=\"0.99\", method=\"RetrieveChunks\"}",
+          "expr": "node_request_latency_ms{quantile=\"0.99\",method=\"RetrieveChunks\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -895,10 +880,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": {},
       "description": "the total number of node's socket address updates",
       "fieldConfig": {
         "defaults": {
@@ -910,7 +892,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -940,9 +923,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -965,10 +949,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1011,7 +992,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1064,10 +1046,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1110,7 +1089,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1163,7 +1143,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
@@ -1176,6 +1156,6 @@
   "timezone": "",
   "title": "EigenDA",
   "uid": "dcd9d495-ff1e-4794-b2b6-62634e4b40d1",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
