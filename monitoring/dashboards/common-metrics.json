@@ -89,7 +89,7 @@
           "fields": "/^avs_name$/",
           "values": false
         },
-        "textMode": "auto",
+        "textMode": "auto"
       },
       "pluginVersion": "10.2.3",
       "targets": [
