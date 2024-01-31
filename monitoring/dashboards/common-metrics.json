@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 13,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -45,7 +45,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -90,7 +90,6 @@
           "values": false
         },
         "textMode": "auto",
-        "wideLayout": true
       },
       "pluginVersion": "10.2.3",
       "targets": [
@@ -102,7 +101,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "eigen_performance_score{avs_name=\"$AvsName\"}",
+          "expr": "eigen_performance_score,
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -117,7 +116,10 @@
       "type": "stat"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "description": "The performance metric is a score between 0 and 100 and each developer can define their own way of calculating the score. The score is calculated based on the performance of the Node and the performance of the backing services.",
       "fieldConfig": {
         "defaults": {
@@ -159,8 +161,6 @@
       },
       "id": 8,
       "options": {
-        "minVizHeight": 200,
-        "minVizWidth": 200,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -195,7 +195,10 @@
       "type": "gauge"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -306,7 +309,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "The total balance in AVS Node per used token.",
       "fieldConfig": {
@@ -515,7 +518,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "Average Response Time per method in seconds over time.",
       "fieldConfig": {
@@ -612,7 +615,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "description": "Total of JSON-RPC requests per method.",
       "fieldConfig": {
         "defaults": {
@@ -704,7 +710,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "description": "Request duration distribution in seconds per method.",
       "fieldConfig": {
         "defaults": {
@@ -806,7 +815,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values({job=\"eigenDA\"},avs_name)",
+          "query": "label_values(avs_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -825,6 +834,6 @@
   "timezone": "",
   "title": "AVS Specification Metrics",
   "uid": "l8RpPN94z",
-  "version": 2,
+  "version": 12,
   "weekStart": ""
 }
