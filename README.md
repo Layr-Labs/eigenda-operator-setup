@@ -17,7 +17,6 @@ Clone this repo and execute the following commands:
 ```bash
 git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
 cd eigenda-operator-setup
-chmod +x run.sh
 cp .env.example .env
 ```
 Update the `TODO` sections in the  `.env` file given in the root directory of the repository with your own details.:
@@ -49,6 +48,7 @@ In order to limit traffic from the EigenLabs hosted Disperser, please restrict y
 For users with private IP, you may need to perform port forwarding to open the dispersal ports. Refer to retrieval setup for more details.
 
 ### Opt-in into EigenDA
+This command also downloads the latest SRS points if they don't exist and can take around 20 minutes to complete for the firs time.
 ```bash
 ./run.sh opt-in
 ```

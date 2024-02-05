@@ -1,11 +1,24 @@
 #!/bin/sh
 # Path: srs_setup.sh
 
+DOWNLOADED_FILE=false
 echo "Downloading srs resources"
-echo "Downloading g1 point. This could take upto 5 minutes"
-wget https://srs-mainnet.s3.amazonaws.com/kzg/g1.point --output-document=./resources/g1.point
-echo "Downloading g2 point. This could take upto 10 minutes"
-wget https://srs-mainnet.s3.amazonaws.com/kzg/g2.point --output-document=./resources/g2.point
+if ! [ -f ./resources/g1.point ]; then
+  echo "g1.point does not exist."
+  echo "Downloading g1 point. This could take upto 5 minutes"
+  wget https://srs-mainnet.s3.amazonaws.com/kzg/g1.point --output-document=./resources/g1.point
+  DOWNLOADED_FILE=true
+fi
 
-echo "validating hashes of g1 and g2 points This could take upto 5 minutes"
-cd resources && sha256sum -c srssha256sums.txt
+if ! [ -f ./resources/g2.point ]; then
+  echo "g2.point does not exist."
+  echo "Downloading g2 point. This could take upto 10 minutes"
+  wget https://srs-mainnet.s3.amazonaws.com/kzg/g2.point --output-document=./resources/g2.point
+  DOWNLOADED_FILE=true
+fi
+
+# Any time we download the file, validate hashes
+if [ "$DOWNLOADED_FILE" = true ]; then
+  echo "validating hashes of g1 and g2 points This could take upto 5 minutes"
+  cd resources && sha256sum -c srssha256sums.txt
+fi
