@@ -22,7 +22,7 @@ optIn() {
   --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
   --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
   --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
-  ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.2.3 \
+  ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.3.0 \
   --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
   --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
   --operation opt-in \
@@ -36,7 +36,7 @@ optOut() {
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
-    ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.2.3 \
+    ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.3.0 \
     --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
     --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
     --operation opt-out \
