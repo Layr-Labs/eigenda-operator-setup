@@ -10,10 +10,10 @@ if ! [ -f ./resources/g1.point ]; then
   DOWNLOADED_FILE=true
 fi
 
-if ! [ -f ./resources/g2.point ]; then
-  echo "g2.point does not exist."
-  echo "Downloading g2 point. This could take upto 10 minutes"
-  wget https://srs-mainnet.s3.amazonaws.com/kzg/g2.point --output-document=./resources/g2.point
+if ! [ -f ./resources/g2.point.powerOf2 ]; then
+  echo "g2.point.powerOf2 does not exist."
+  echo "Downloading g2 point powerOf2. This will take few seconds"
+  wget https://srs-mainnet.s3.amazonaws.com/kzg/g2.point.powerOf2 --output-document=./resources/g2.point.powerOf2
   DOWNLOADED_FILE=true
 fi
 
