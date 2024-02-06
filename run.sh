@@ -9,7 +9,11 @@
 # To test that try running `docker run --rm --env-file .env busybox /bin/sh -c 'echo $NODE_ECDSA_KEY_PASSWORD'`
 # This will output password with single quote. Not sure why this happens.
 optIn() {
-  ./srs_setup.sh
+  output=$(./srs_setup.sh 2>&1)
+  if [ "$output" -ne 0 ]; then
+    echo "Error: $output"
+    exit 1
+  fi
   socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
   echo "using socket: $socket"
   docker run --env-file .env \

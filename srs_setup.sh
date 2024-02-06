@@ -20,5 +20,10 @@ fi
 # Any time we download the file, validate hashes
 if [ "$DOWNLOADED_FILE" = true ]; then
   echo "validating hashes of g1 and g2 points This could take upto 5 minutes"
-  cd resources && sha256sum -c srssha256sums.txt
+  if (cd resources && sha256sum -c srssha256sums.txt); then
+    echo "Checksums match. Verification successful."
+  else
+    echo "Error: Checksums do not match. Exiting."
+    exit 1
+  fi
 fi
