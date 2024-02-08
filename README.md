@@ -48,11 +48,11 @@ In order to limit traffic from the EigenLabs hosted Disperser, please restrict y
 For users with private IP, you may need to perform port forwarding to open the dispersal ports. Refer to retrieval setup for more details.
 
 ### Opt-in into EigenDA
-This command also downloads the latest SRS points if they don't exist and can take around 20 minutes to complete for the first time.
+This command also downloads the latest SRS points (~8 GB) if they don't exist and can take upto 10 minutes to complete for the first time based on your network speed.
 ```bash
 ./run.sh opt-in
 ```
-It will use the `NODE_HOSTNAME` from [.env](.env) as your current IP.
+It will use the `NODE_HOSTNAME` from [.env](.env.example) as your current IP.
 
 ### Run EigenDA
 Execute the following command to start the docker containers:
