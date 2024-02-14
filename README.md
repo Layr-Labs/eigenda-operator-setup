@@ -22,7 +22,6 @@ Clone this repo and execute the following commands:
 ```bash
 git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
 cd eigenda-operator-setup
-chmod +x run.sh
 cp .env.example .env
 ```
 
@@ -41,7 +40,7 @@ Retrieval Setup:
 
 In order for users to retrieve data from your node, you will need to open access to retrieval ports.
 
-Ensure the port specified as `NODE_RETRIEVAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/.env#L17) has open access to the public internet.
+Ensure the port specified as `NODE_RETRIEVAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/.env.example#L17) has open access to the public internet.
 
 For users with private IP e.g. connecting to the Internet via a router, you may need to perform port forwarding to open the retrieval ports.
 Use a web browser and navigate to http://192.168.0.1 and set-up port forwarding according to instruction of your router.
@@ -58,11 +57,12 @@ For users with private IP, you may need to perform port forwarding to open the d
 
 ### Opt-in into EigenDA
 
+This command also downloads the latest SRS points (~8 GB) if they don't exist and can take upto 10 minutes to complete for the first time based on your network speed.
 ```bash
 ./run.sh opt-in
 ```
 
-It will use the `NODE_HOSTNAME` from [.env](.env) as your current IP.
+It will use the `NODE_HOSTNAME` from [.env](.env.example) as your current IP.
 
 ### Run EigenDA
 
