@@ -14,7 +14,7 @@ You can find that in EigenDA [.env](../.env.example) file (`MAIN_SERVICE_NAME`)
 
 Once correct config is set up, run the following command to start the monitoring stack
 ```bash
-docker compose up -d
+docker-compose up -d
 ```
 
 Your setup should ensure Prometheus is run in the same Docker network as EigenDA. Run the following command for this purpose:
