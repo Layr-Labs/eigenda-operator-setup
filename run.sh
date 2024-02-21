@@ -5,7 +5,7 @@
 
 socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
 
-# In both all commands, We have to explicitly set the password again here because
+# In all commands, We have to explicitly set the password again here because
 # when docker run loads the `.env` file, it keeps the quotes around the password
 # which causes the password to be incorrect.
 # To test that try running `docker run --rm --env-file .env busybox /bin/sh -c 'echo $NODE_ECDSA_KEY_PASSWORD'`
