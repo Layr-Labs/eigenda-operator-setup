@@ -129,6 +129,16 @@ docker compose down
 ```bash
 ./run.sh opt-out
 ```
+
+### Update Quorums (Optional)
+If you want to update the quorums, update the `NODE_QUORUM_ID_LIST` in your .env file
+to have a command separated value of new quorums (for ex: `0,1`) then running the following command:
+> **_NOTE:_** This command sends two transactions (opt-out and opt-in again). 
+> This means if it opts-in again it will have to go via churner and will check the TVL based on lowest stake if the network is full.
+```bash
+./run.sh update-quorums
+```
+
 ### Upgrade your node
 
 Upgrade the AVS software for your EigenDA service setup by following the steps below:
