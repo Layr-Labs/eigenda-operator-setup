@@ -59,6 +59,8 @@ Execute the following command to start the docker containers:
 ```
 docker compose up -d
 ```
+Note: In Docker versions before 19.03, use `docker-compose up -d` as the command syntax.
+
 It will start the node and nginx containers and if you do `docker ps` you should see something like this:
 ![image](./images/node-up.png)
 
