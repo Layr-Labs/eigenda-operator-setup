@@ -39,7 +39,7 @@ Use a web browser and navigate to http://192.168.0.1 and set-up port forwarding 
 
 Dispersal Setup:
 
-In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](../goerli/.env.example) in the below setup.
+In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](./.env.example) in the below setup.
 
 * `3.221.120.68/32`
 * `52.2.226.152/32`
@@ -52,7 +52,7 @@ This command also downloads the latest SRS points (~8 GB) if they don't exist an
 ```bash
 ./run.sh opt-in
 ```
-It will use the `NODE_HOSTNAME` from [.env](.env.example) as your current IP.
+It will use the `NODE_HOSTNAME` from [.env](./.env.example) as your current IP.
 
 ### Run EigenDA
 Execute the following command to start the docker containers:
