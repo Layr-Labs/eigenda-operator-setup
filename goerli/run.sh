@@ -12,7 +12,7 @@ socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
 # This will output password with single quote. Not sure why this happens.
 optIn() {
   echo "checking and validating SRS"
-  ./../srs_setup.sh
+  ../srs_setup.sh
   if [ $? -ne 0 ]; then
     echo "Error: SRS setup failed. Exiting."
     exit 1

@@ -23,8 +23,8 @@ Update the `TODO` sections in the  `.env` file given in the root directory of th
 
 ### Create some local folders which are required by EigenDA
 ```bash
-mkdir -p $HOME/.eigenlayer/eigenda/logs
-mkdir -p $HOME/.eigenlayer/eigenda/db
+mkdir -p $HOME/.eigenlayer/eigenda/goerli/logs
+mkdir -p $HOME/.eigenlayer/eigenda/goerli/db
 ```
 
 ### Operator Networking Security Setup
