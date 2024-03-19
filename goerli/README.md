@@ -30,11 +30,11 @@ mkdir -p $HOME/.eigenlayer/eigenda/goerli/db
 ### Operator Networking Security Setup
 Retrieval Setup:
 
-In order for users to retrieve data from your node, you will need to open access to retrieval ports. 
+In order for users to retrieve data from your node, you will need to open access to retrieval ports.
 
 Ensure the port specified as `NODE_RETRIEVAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/goerli/.env.example#L17) has open access to the public internet.
 
-For users with private IP e.g. connecting to the Internet via a router, you may need to perform port forwarding to open the retrieval ports. 
+For users with private IP e.g. connecting to the Internet via a router, you may need to perform port forwarding to open the retrieval ports.
 Use a web browser and navigate to http://192.168.0.1 and set-up port forwarding according to instruction of your router.
 
 Dispersal Setup:
@@ -128,15 +128,6 @@ docker compose down
 ### Opt-out into EigenDA
 ```bash
 ./run.sh opt-out
-```
-
-### Update Quorums (Optional)
-If you want to update the quorums, update the `NODE_QUORUM_ID_LIST` in your .env file
-to have a command separated value of new quorums (for ex: `0,1`) then running the following command:
-> **_NOTE:_** This command sends two transactions (opt-out and opt-in again). 
-> This means if it opts-in again it will have to go via churner and will check the TVL based on lowest stake if the network is full.
-```bash
-./run.sh update-quorums
 ```
 
 ### Upgrade your node
