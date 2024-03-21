@@ -42,8 +42,8 @@ Dispersal Setup:
 In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](./.env.example) in the below setup.
 
 ### TODO: Update these for Holesky
-* `3.221.120.68/32`
-* `52.2.226.152/32`
+* `54.144.24.178/32`
+* `34.232.117.230/32`
 * `18.214.113.214/32`
 
 For users with private IP, you may need to perform port forwarding to open the dispersal ports. Refer to retrieval setup for more details.
@@ -129,15 +129,6 @@ docker compose down
 ### Opt-out into EigenDA
 ```bash
 ./run.sh opt-out
-```
-
-### Update Quorums (Optional)
-If you want to update the quorums, update the `NODE_QUORUM_ID_LIST` in your .env file
-to have a command separated value of new quorums (for ex: `0,1`) then running the following command:
-> **_NOTE:_** This command sends two transactions (opt-out and opt-in again). 
-> This means if it opts-in again it will have to go via churner and will check the TVL based on lowest stake if the network is full.
-```bash
-./run.sh update-quorums
 ```
 
 ### Upgrade your node

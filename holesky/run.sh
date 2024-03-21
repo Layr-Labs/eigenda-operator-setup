@@ -61,8 +61,6 @@ if [ "$1" = "opt-in" ]; then
   optIn
 elif [ "$1" = "opt-out" ]; then
   optOut
-elif [ "$1" = "update-quorums" ]; then
-  updateQuorums
 else
   echo "Invalid command"
 fi

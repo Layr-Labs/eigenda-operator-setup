@@ -9,13 +9,12 @@ In the folder
 ```bash
 cp .env.example .env
 ```
-* Make sure your Prometheus config [file](./prometheus.yml) is updated with the metrics port (`NODE_METRICS_PORT`) of the EigenDA node.
+* Make sure your Prometheus config [file](./prometheus.yml) is updated with the metrics port (`NODE_METRICS_PORT`) of the EigenDA node, Default value is set to `9092`.
 * Make sure the EigenDA container name is also set correctly in the Prometheus config file. 
 You can find that in EigenDA `.env`(`../<network>/.env.example`) file (`MAIN_SERVICE_NAME`)
 * Move prometheus.yml file to path: ${HOME}/.eigenlayer/config/ 
 * Make sure the location of prometheus file is correct in [.env](./.env.example) file
  
-
 Once correct config is set up, run the following command to start the monitoring stack
 ```bash
 docker compose up -d
