@@ -43,19 +43,6 @@ optOut() {
     --socket "$socket"
 }
 
-updateQuorums() {
-    echo "using socket: $socket"
-    docker run --env-file .env \
-      --rm \
-      --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
-      --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
-      --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
-      ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.4.0 \
-      --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
-      --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
-      --operation update-quorums \
-      --socket "$socket"
-}
 
 if [ "$1" = "opt-in" ]; then
   optIn
