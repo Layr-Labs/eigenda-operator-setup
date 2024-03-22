@@ -41,7 +41,6 @@ Dispersal Setup:
 
 In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](./.env.example) in the below setup.
 
-### TODO: Update these for Holesky
 * `54.144.24.178/32`
 * `34.232.117.230/32`
 * `18.214.113.214/32`
