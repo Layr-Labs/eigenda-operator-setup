@@ -52,7 +52,7 @@ Execute the following command to opt-in EigenDA:
 ```bash
 ./run.sh opt-in
 ```
-You will need to specify the paramters in [.env](./.env.example) regarding:
+You will need to specify the parameters in [.env](./.env.example) regarding:
 * `NODE_QUORUM_ID_LIST`: The quorums you are going to opt-in. It's required that you haven't already registered in any of the supplied quorums in this parameter.
 * `NODE_HOSTNAME`: The current IP of the node. The IP is required to be publicly reachable.
 
@@ -134,7 +134,7 @@ docker compose down
 ```bash
 ./run.sh opt-out
 ```
-Similar to opt-in, you will need to specify the quorums you are going to opt-out via the `NODE_QUORUM_ID_LIST` in [.env](./.env.example). It's required that you have already registered in all quurums supplied in this parameter.
+Similar to opt-in, you will need to specify the quorums you are going to opt-out via the `NODE_QUORUM_ID_LIST` in [.env](./.env.example). It's required that you have already registered in all quorums supplied in this parameter.
 
 ### Upgrade your node
 
