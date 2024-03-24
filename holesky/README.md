@@ -30,11 +30,11 @@ mkdir -p $HOME/.eigenlayer/eigenda/holesky/db
 ### Operator Networking Security Setup
 Retrieval Setup:
 
-In order for users to retrieve data from your node, you will need to open access to retrieval ports. 
+In order for users to retrieve data from your node, you will need to open access to retrieval ports.
 
 Ensure the port specified as `NODE_RETRIEVAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/holesky/.env.example#L17) has open access to the public internet.
 
-For users with private IP e.g. connecting to the Internet via a router, you may need to perform port forwarding to open the retrieval ports. 
+For users with private IP e.g. connecting to the Internet via a router, you may need to perform port forwarding to open the retrieval ports.
 Use a web browser and navigate to http://192.168.0.1 and set-up port forwarding according to instruction of your router.
 
 Dispersal Setup:
@@ -48,11 +48,16 @@ In order to limit traffic from the EigenLabs hosted Disperser, please restrict y
 For users with private IP, you may need to perform port forwarding to open the dispersal ports. Refer to retrieval setup for more details.
 
 ### Opt-in into EigenDA
-This command also downloads the latest SRS points (~8 GB) if they don't exist and can take upto 10 minutes to complete for the first time based on your network speed.
+Execute the following command to opt-in EigenDA:
 ```bash
 ./run.sh opt-in
 ```
-It will use the `NODE_HOSTNAME` from [.env](./.env.example) as your current IP.
+You will need to specify the paramters in [.env](./.env.example) regarding:
+* `NODE_QUORUM_ID_LIST`: The quorums you are going to opt-in. It's required that you haven't already registered in any of the supplied quorums in this parameter.
+* `NODE_HOSTNAME`: The current IP of the node. The IP is required to be publicly reachable.
+
+This command also downloads the latest SRS points (~8 GB) if they don't exist and can take upto 10 minutes to complete for the first time based on your network speed.
+
 
 ### Run EigenDA
 Execute the following command to start the docker containers:
@@ -125,10 +130,11 @@ Tear down container
 ```bash
 docker compose down
 ```
-### Opt-out into EigenDA
+### Opt-out from EigenDA
 ```bash
 ./run.sh opt-out
 ```
+Similar to opt-in, you will need to specify the quorums you are going to opt-out via the `NODE_QUORUM_ID_LIST` in [.env](./.env.example). It's required that you have already registered in all quurums supplied in this parameter.
 
 ### Upgrade your node
 
