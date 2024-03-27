@@ -23,10 +23,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "description": "the total number of batches processed by the DA node",
       "fieldConfig": {
         "defaults": {
@@ -104,10 +101,7 @@
       "pluginVersion": "10.2.0",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_eigenda_processed_batches_total{type=\"number\"}",
@@ -120,10 +114,7 @@
           "useBackend": false
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_eigenda_processed_batches_total{type=\"number\", status=\"signed\"}",
@@ -141,10 +132,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "description": "the total size of batches processed by the DA node",
       "fieldConfig": {
         "defaults": {
@@ -222,10 +210,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_eigenda_processed_batches_total{type=\"size\"}",
@@ -242,10 +227,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "description": "the total number  of batches that have been removed by the DA node",
       "fieldConfig": {
         "defaults": {
@@ -322,10 +304,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_eigenda_removed_batches_total{type=\"number\"}",
@@ -342,10 +321,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "description": "the total size of batches that have been removed by the DA node",
       "fieldConfig": {
         "defaults": {
@@ -423,10 +399,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_eigenda_removed_batches_total{type=\"size\"} / 1024",
@@ -443,10 +416,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -526,10 +496,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_request_latency_ms{quantile=\"0.99\", method=\"StoreChunks\"}",
@@ -542,10 +509,7 @@
           "useBackend": false
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_request_latency_ms{quantile=\"0.95\", method=\"StoreChunks\"}",
@@ -563,10 +527,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -643,10 +604,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "editorMode": "code",
           "expr": "sum(node_eigenda_processed_batches_total{type=\"size\"})\n/\nsum(node_eigenda_processed_batches_total{type=\"number\"})",
           "hide": false,
@@ -656,10 +614,7 @@
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_eigenda_processed_batches_total{type=\"size\"}",
@@ -677,10 +632,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -756,10 +708,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "rate(node_eigenda_rpc_requests_total{method=\"StoreChunks\"}[$__range])",
@@ -776,10 +725,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -858,10 +804,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "code",
           "expr": "node_request_latency_ms{quantile=\"0.99\", method=\"RetrieveChunks\"}",
@@ -874,10 +817,7 @@
           "useBackend": false
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "code",
           "expr": "node_request_latency_ms{quantile=\"0.95\", method=\"RetrieveChunks\"}",
@@ -895,10 +835,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "description": "the total number of node's socket address updates",
       "fieldConfig": {
         "defaults": {
@@ -945,10 +882,7 @@
       "pluginVersion": "10.2.0",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "node_eigenda_node_socket_updates_total",
@@ -965,10 +899,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1044,10 +975,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "code",
           "expr": "rate(node_eigenda_rpc_requests_total{method=\"RetrieveChunks\"}[$__range])",
@@ -1064,10 +992,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+   "datasource": "${datasource}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1142,10 +1067,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": null,
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "sum by(status) (node_eigenda_processed_batches_total{type=\"number\"})",
@@ -1166,7 +1088,17 @@
   "schemaVersion": 38,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "prometheus",
+        "refresh": 1,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Select a Data Source"
+      }
+    ]
   },
   "time": {
     "from": "now-1h",
