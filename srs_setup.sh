@@ -1,19 +1,21 @@
 #!/bin/sh
 # Path: srs_setup.sh
 
+. ./.env
+
 DOWNLOADED_FILE=false
 echo "Downloading srs resources"
 if ! [ -f ../resources/g1.point ]; then
   echo "g1.point does not exist."
   echo "Downloading g1 point. This could take upto 5 minutes"
-  wget https://srs-mainnet.s3.amazonaws.com/kzg/g1.point --output-document=../resources/g1.point
+  wget https://srs-mainnet.s3.amazonaws.com/kzg/g1.point --output-document=$NODE_G1_PATH_HOST
   DOWNLOADED_FILE=true
 fi
 
 if ! [ -f ../resources/g2.point.powerOf2 ]; then
   echo "g2.point.powerOf2 does not exist."
   echo "Downloading g2 point powerOf2. This will take few seconds"
-  wget https://srs-mainnet.s3.amazonaws.com/kzg/g2.point.powerOf2 --output-document=../resources/g2.point.powerOf2
+  wget https://srs-mainnet.s3.amazonaws.com/kzg/g2.point.powerOf2 --output-document=$NODE_G2_PATH_HOST
   DOWNLOADED_FILE=true
 fi
 
