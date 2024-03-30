@@ -148,7 +148,7 @@ time=2024-03-22T19:35:30.063Z level=DEBUG source=/app/node/node.go:353 msg="Exit
 docker compose down
 ```
 
-#### Opt-Out of EigenDA
+### Opt-Out of EigenDA
 
 Prior to running this command set `NODE_QUORUM_ID_LIST` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L14) to either `0` or `1` or `0,1` to opt-out of one or both quorums.
 
