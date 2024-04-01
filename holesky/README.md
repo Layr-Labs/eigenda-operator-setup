@@ -58,6 +58,8 @@ EigenDA maintains two [quorums](https://docs.eigenlayer.xyz/eigenlayer/operator-
 
 Prior to running the opt-in command below set `NODE_QUORUM_ID_LIST` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L14) to either `0` or `1` or `0,1`.
 
+You only set quorums that you are currently not registered to in the NODE_QUORUM_ID_LIST. For example if you are already registered to quorum 0 and want to opt-in one more quorum 1, then you must set NODE_QUORUM_ID_LIST to `1` (not `0,1`).
+
 
 #### Step 6: Opt-in into EigenDA
 
