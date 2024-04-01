@@ -47,7 +47,21 @@ In order to limit traffic from the EigenLabs hosted Disperser, please restrict y
 - `34.232.117.230/32`
 - `18.214.113.214/32`
 
-#### Step 5: Opt-in into EigenDA
+
+#### Step 5: Quorum Configuration
+
+EigenDA maintains two [quorums](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-introduction#quorums): Restaked ETH (including Native and LST Restaked ETH) and Restaked WETH. EigenDA allows the Operator to opt-in to either quorum or both quorums at once (aka dual-quorum). The following configuration values for NODE_QUORUM_ID_LIST are allowed:
+
+- ETH (Native & LST) Quorum:  `0`
+- WrappedEth (WETH) Quorum: `1`
+- Dual Quorum: `0,1`
+
+Prior to running the opt-in command below set `NODE_QUORUM_ID_LIST` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L14) to either `0` or `1` or `0,1`.
+
+You only set quorums that you are currently not registered to in the NODE_QUORUM_ID_LIST. For example if you are already registered to quorum 0 and want to opt-in one more quorum 1, then you must set NODE_QUORUM_ID_LIST to `1` (not `0,1`).
+
+
+#### Step 6: Opt-in into EigenDA
 
 In order to opt-in into EigenDA as an Operator, you must meet the following delegated TVL requirements:
 
@@ -56,28 +70,25 @@ In order to opt-in into EigenDA as an Operator, you must meet the following dele
 - The operator to churn out has less than 10.01% of the total stake
 
 Execute the following command to opt-in to EigenDA AVS:
-This command also downloads the latest SRS points if they don't exist on the node. The file is approximately 8GB in size and the opt-in process can some time to complete depending on the network bandwidth.
-
-Note: EigenDA enables the following Quorum settings.
-Quorums Maps:
-
-- StakedEth Quorum:  `0`
-- WrappedEth Quorum: `1`
-- Dual Quorum: `0,1`
-
-Prior to running this command set `NODE_QUORUM_ID_LIST` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L14) to either `0` or `1` or `0,1` to be part of both quorums.
 
 ```
 ./run.sh opt-in
 ```
 
-Note: the script will use the `NODE_HOSTNAME` from [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L67) as your current IP.
+:::warn
+Operator must wait up to 6 hours if the delegation happened after you opt-in to the EigenDA AVS. EigenLayer's AVS-Sync component runs at 6 hour batch intervals to update the delegation totals on chain for each operator. If you are unable to opt in despite having sufficient delegated stake, please wait at least 6 hours, then retry opt-in.
+:::
+
+The opt-in command also downloads the latest SRS points if they don't exist on the node. The file is approximately 8GB in size and the opt-in process can some time to complete depending on the network bandwidth.
+
+The script will use the `NODE_HOSTNAME` from [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L67) as your current IP.
 
 If your operator fails to opt-in to EigenDA or is ejected by the Churn Approver then you may run the opt-in command again after the rate limiting threshold has passed. The current rate limiting threshold is 5 minutes.
 
 If you receive the error “error: failed to request churn approval .. Rate Limit Exceeded” you may retry after the threshold has passed. If you receive the error “insufficient funds”, you may increase your Operator’s delegated TVL to the required minimum and retry after the threshold has passed.
 
-#### Step 6: Run EigenDA
+
+#### Step 7: Run EigenDA
 
 Execute the following command to start the docker containers:
 
@@ -133,15 +144,19 @@ time=2024-03-22T19:35:30.063Z level=INFO source=/app/node/node.go:351 msg="Store
 time=2024-03-22T19:35:30.063Z level=DEBUG source=/app/node/node.go:353 msg="Exiting process batch" 
 ```
 
-#### Step 7 (optional): To bring the containers down, run the following command
+#### Step 8 (optional): To bring the containers down, run the following command
 
 ```
 docker compose down
 ```
 
-Opt-Out of EigenDA
+### Opt-Out of EigenDA
 
-Prior to running this command set `NODE_QUORUM_ID_LIST` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L14) to either `0` or `1` or `0,1` to opt-out of both quorums.
+Prior to running this command set `NODE_QUORUM_ID_LIST` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L14) to either `0` or `1` or `0,1` to opt-out of one or both quorums.
+
+:::warn
+Please be careful to ensure that you opt-out of your current (or intended) quorum.
+:::
 
 The following command will unregister you from the EigenDA AVS:
 
