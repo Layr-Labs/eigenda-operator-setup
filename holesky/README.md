@@ -14,7 +14,7 @@ Please ensure you have reviewed the [current Active Operator Set cap](https://do
 
 #### Step 3: Prepare Local EigenDA files
 
-Clone this repo and execute the following commands:
+##### Step 3.1: Clone this repo and execute the following commands:
 
 ```
 git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
@@ -22,13 +22,21 @@ cd eigenda-operator-setup/holesky
 cp .env.example .env
 ```
 
-Manually update the `.env` file downloaded in the steps above. Modify the sections marked with `TODO` to match your environment.
 
-Create local folders which are required by EigenDA:
+##### Step 3.2: Manually update the `.env` file downloaded in the steps above. Modify all sections marked with `TODO` to match your environment.
+
+##### Step 3.3: Create local folders which are required by EigenDA:
 
 ```
 mkdir -p $HOME/.eigenlayer/eigenda/holesky/logs
 mkdir -p $HOME/.eigenlayer/eigenda/holesky/db
+```
+
+##### Step 3.4 Test the values of your environment variables $USER_HOME, $EIGENLAYER_HOME, $EIGENDA_HOME to ensure all the folders exist as expected. Review the resulting values Correct any folders whose paths are not set as expected.
+
+```
+source .env
+ls $USER_HOME $EIGENLAYER_HOME $EIGENDA_HOME
 ```
 
 #### Step 4: Operator Networking Security Setup
