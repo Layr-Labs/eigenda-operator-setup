@@ -1,6 +1,6 @@
 # Holesky
 
-<!-- :::info -->
+> **_INFO:_**
 Please ensure you have reviewed the [current Active Operator Set cap](https://docs.eigenlayer.xyz/operator-guides/avs-installation-and-registration/eigenda-operator-guide#eigenda-churn-approver) and ensure you have sufficient delegated restaked ETH TVL before proceeding.
 <!-- ::: -->
 
@@ -58,15 +58,11 @@ In order to limit traffic from the EigenLabs hosted Disperser, please restrict y
 
 #### Step 5: Quorum Configuration
 
-EigenDA maintains two [quorums](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-introduction#quorums): Restaked ETH (including Native and LST Restaked ETH) and Restaked WETH. EigenDA allows the Operator to opt-in to either quorum or both quorums at once (aka dual-quorum). The following configuration values for NODE_QUORUM_ID_LIST are allowed:
+EigenDA maintains two [quorums](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-introduction#quorums): Restaked ETH (including Native and LST Restaked ETH) and Restaked WETH. EigenDA allows the Operator to opt-in to either quorum or both quorums at once (aka dual-quorum).
 
 - ETH (Native & LST) Quorum:  `0`
 - WrappedEth (WETH) Quorum: `1`
 - Dual Quorum: `0,1`
-
-Prior to running the opt-in command below set `NODE_QUORUM_ID_LIST` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L14) to either `0` or `1` or `0,1`.
-
-You only set quorums that you are currently not registered to in the NODE_QUORUM_ID_LIST. For example if you are already registered to quorum 0 and want to opt-in one more quorum 1, then you must set NODE_QUORUM_ID_LIST to `1` (not `0,1`).
 
 
 #### Step 6: Opt-in into EigenDA
@@ -77,15 +73,23 @@ In order to opt-in into EigenDA as an Operator, you must meet the following dele
 - Have more than 1.1x current lowest-stake Operator in the active Operator set. Please see [EigenDA Churn Approver](https://docs.eigenlayer.xyz/operator-guides/avs-installation-and-registration/eigenda-operator-guide#eigenda-churn-approver) for more detail.
 - The operator to churn out has less than 10.01% of the total stake
 
-Execute the following command to opt-in to EigenDA AVS:
+Execute the following command based on the quorum you want to opt-in in EigenDA AVS:
 
 ```
-./run.sh opt-in
-```
+./run.sh opt-in <quorum>
 
-:::warn
+# for opting in to quorum 0:
+./run.sh opt-in 0
+
+# for opting in to quorum 0 and 1:
+./run.sh opt-in 0,1 
+
+```
+You only need to provide the quorum which you want to opt into. For example if you are already registered to quorum `0` and want to opt-in one more quorum `1`, then you just need to set `<quorum>` as `1` while opting in again.
+
+> **_WARNING:_**
 Operator must wait up to 6 hours if the delegation happened after you opt-in to the EigenDA AVS. EigenLayer's AVS-Sync component runs at 6 hour batch intervals to update the delegation totals on chain for each operator. If you are unable to opt in despite having sufficient delegated stake, please wait at least 6 hours, then retry opt-in.
-:::
+
 
 The opt-in command also downloads the latest SRS points if they don't exist on the node. The file is approximately 8GB in size and the opt-in process can some time to complete depending on the network bandwidth.
 
@@ -160,16 +164,19 @@ docker compose down
 
 ### Opt-Out of EigenDA
 
-Prior to running this command set `NODE_QUORUM_ID_LIST` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/a069ad58a33222e12130e9989d743215a9293549/holesky/.env.example#L14) to either `0` or `1` or `0,1` to opt-out of one or both quorums.
-
-:::warn
+> **_WARNING:_**
 Please be careful to ensure that you opt-out of your current (or intended) quorum.
-:::
 
-The following command will unregister you from the EigenDA AVS:
+The following command can be used to opt out from the EigenDA AVS:
 
 ```
-./run.sh opt-out
+./run.sh opt-out <quorum>
+
+# for opting out to quorum 0:
+./run.sh opt-out 0
+
+# for opting out to quorum 0 and 1:
+./run.sh opt-out 0,1 
 ```
 
 ## Upgrade your node
