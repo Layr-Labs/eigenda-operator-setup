@@ -85,6 +85,7 @@ Execute the following command based on the quorum you want to opt-in in EigenDA 
 ./run.sh opt-in 0,1 
 
 ```
+You only need to provide the quorum which you want to opt into. For example if you are already registered to quorum `0` and want to opt-in one more quorum `1`, then you just need to set `<quorum>` as `1` while opting in again.
 
 :::warn
 Operator must wait up to 6 hours if the delegation happened after you opt-in to the EigenDA AVS. EigenLayer's AVS-Sync component runs at 6 hour batch intervals to update the delegation totals on chain for each operator. If you are unable to opt in despite having sufficient delegated stake, please wait at least 6 hours, then retry opt-in.
