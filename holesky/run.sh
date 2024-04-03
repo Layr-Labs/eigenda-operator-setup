@@ -27,7 +27,8 @@ optIn() {
   --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
   --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
   --operation opt-in \
-  --socket "$socket"
+  --socket "$socket" \
+  --quorum-id-list "$1"
 }
 
 optOut() {
@@ -40,14 +41,15 @@ optOut() {
     --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
     --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
     --operation opt-out \
-    --socket "$socket"
+    --socket "$socket" \
+    --quorum-id-list "$1"
 }
 
 
 if [ "$1" = "opt-in" ]; then
-  optIn
+  optIn "$2"
 elif [ "$1" = "opt-out" ]; then
-  optOut
+  optOut "$2"
 else
   echo "Invalid command"
 fi
