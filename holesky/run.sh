@@ -46,6 +46,7 @@ optOut() {
 }
 
 listQuorums() {
+  # we have to pass a dummy quorum-id-list as it is required by the plugin
   docker run --env-file .env \
     --rm \
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
@@ -55,7 +56,8 @@ listQuorums() {
     --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
     --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
     --socket "$socket" \
-    --operation list-quorums
+    --operation list-quorums \
+    --quorum-id-list 0
 }
 
 
