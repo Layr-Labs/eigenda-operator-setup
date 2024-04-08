@@ -55,6 +55,10 @@ In order to limit traffic from the EigenLabs hosted Disperser, please restrict y
 - `34.232.117.230/32`
 - `18.214.113.214/32`
 
+Node API Port Serup:
+
+In order to consolidate Operator metrics to measure the health of the network, please also open NODE_API_PORT in .env to the internet if possible. Please see Node API Spec for more detail on the data made available via this port.
+
 
 #### Step 5: Quorum Configuration
 
