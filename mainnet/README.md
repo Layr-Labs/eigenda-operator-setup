@@ -45,11 +45,11 @@ Retrieval Setup:
 
 In order for users to retrieve data from your node, you will need to open access to retrieval ports.
 
-Ensure the port specified as `NODE_RETRIEVAL_PORT` in the [.env](./.env.example#L16) has open access to the public internet.
+Ensure the port specified as `NODE_RETRIEVAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/mainnet/.env.example#L16) has open access to the public internet.
 
 Dispersal Setup:
 
-In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](./.env.example#L13) in the below setup.
+In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/mainnet/.env.example#L13) in the below setup.
 
 - `3.216.127.6/32`
 - `3.225.189.232/32`
@@ -99,7 +99,7 @@ Operator must wait up to 6 hours if the delegation happened after you opt-in 
 
 The opt-in command also downloads the latest SRS points if they don't exist on the node. The file is approximately 8GB in size and the opt-in process can some time to complete depending on the network bandwidth.
 
-The script will use the `NODE_HOSTNAME` from [.env](./.env.example#L67) as your current IP.
+The script will use the `NODE_HOSTNAME` from [.env](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/mainnet/.env.example#L67) as your current IP.
 
 If your operator fails to opt-in to EigenDA or is ejected by the Churn Approver then you may run the opt-in command again after the rate limiting threshold has passed. The current rate limiting threshold is 5 minutes.
 
@@ -214,7 +214,7 @@ docker compose down
 
 #### Step 4: Start your services again
 
-Make sure your `.env` file still has correct values in the [TODO](./.env.example#L64) sections before you restart your node.
+Make sure your `.env` file still has correct values in the [TODO](https://github.com/Layr-Labs/eigenda-operator-setup/blob/master/mainnet/.env.example#L64) sections before you restart your node.
 
 ```
 docker compose up -d
