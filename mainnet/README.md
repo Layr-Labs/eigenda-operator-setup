@@ -51,9 +51,9 @@ Dispersal Setup:
 
 In order to limit traffic from the EigenLabs hosted Disperser, please restrict your node's ingress traffic to be allowed by the the list provided below and port number set as `NODE_DISPERSAL_PORT` in the [.env](./.env.example#L13) in the below setup.
 
-- `54.144.24.178/32`
-- `34.232.117.230/32`
-- `18.214.113.214/32`
+- `3.216.127.6/32`
+- `3.225.189.232/32`
+- `52.202.222.39/32`
 
 Node API Port Setup:
 
