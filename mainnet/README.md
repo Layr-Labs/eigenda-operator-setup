@@ -73,7 +73,7 @@ EigenDA maintains two [quorums](https://docs.eigenlayer.xyz/eigenlayer/operator-
 
 In order to opt-in into EigenDA as an Operator, you must meet the following delegated TVL requirements:
 
-- Have a minimum of 32 ETH delegated.
+- Have a minimum of 320 ETH delegated.
 - Have more than 1.1x current lowest-stake Operator in the active Operator set. Please see [EigenDA Churn Approver](https://docs.eigenlayer.xyz/operator-guides/avs-installation-and-registration/eigenda-operator-guide#eigenda-churn-approver) for more detail.
 - The operator to churn out has less than 10.01% of the total stake
 
