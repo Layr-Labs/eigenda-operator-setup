@@ -60,10 +60,19 @@ listQuorums() {
     --quorum-id-list 0
 }
 
-
 if [ "$1" = "opt-in" ]; then
+  if [ -z "$2" ]; then
+    echo "Please provide quorum number (0/1/0,1)"
+    echo "Example Usage: ./run.sh opt-in 0"
+    exit 1
+  fi
   optIn "$2"
 elif [ "$1" = "opt-out" ]; then
+  if [ -z "$2" ]; then
+    echo "Please provide quorum number (0/1/0,1)"
+    echo "Example Usage: ./run.sh opt-out 0"
+    exit 1
+  fi
   optOut "$2"
 elif [ "$1" = "list-quorums" ]; then
   listQuorums
