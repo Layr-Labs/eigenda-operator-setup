@@ -39,6 +39,10 @@ source .env
 ls $USER_HOME $EIGENLAYER_HOME $EIGENDA_HOME
 ```
 
+:::warning
+Do not modify the docker-compose.yml file. Unexpected errors can result.
+:::
+
 #### Step 4: Operator Networking Security Setup
 
 Retrieval Setup:
