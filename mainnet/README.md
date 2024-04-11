@@ -190,6 +190,10 @@ The following command can be used to opt out from the EigenDA AVS:
 
 ## Upgrade your node
 
+Please monitor the following channels for updates to EigenDA Operator software:
+- [EigenLayer Discord](https://discord.gg/eigenlayer): #support-operators channel.
+- [EigenDA Operator Setup](https://github.com/Layr-Labs/eigenda-operator-setup) repository: [configure your watch settings](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#configuring-your-watch-settings-for-an-individual-repository) for notifications of new releases.
+
 Upgrade the AVS software for your EigenDA service setup by following the steps below:
 
 #### Step 1: Pull the latest repo
