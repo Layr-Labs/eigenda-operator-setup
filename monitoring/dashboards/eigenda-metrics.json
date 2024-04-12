@@ -313,7 +313,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -330,7 +330,7 @@
           "hide": true,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "B",
           "useBackend": false
@@ -431,7 +431,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -531,7 +531,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -632,7 +632,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -850,26 +850,9 @@
           "expr": "sum(node_eigenda_processed_batches_total{type=\"size\"})\n/\nsum(node_eigenda_processed_batches_total{type=\"number\"})",
           "hide": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "average size",
           "range": true,
           "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "node_eigenda_processed_batches_total{type=\"size\"}",
-          "fullMetaSearch": false,
-          "hide": true,
-          "includeNullMetadata": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
         }
       ],
       "title": "Average processed batch size",
@@ -966,7 +949,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -1065,7 +1048,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "node_request_latency_ms{quantile=\"0.99\", method=\"RetrieveChunks\"}",
+          "expr": "node_request_latency_ms{quantile=\"0.99\",method=\"RetrieveChunks\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1096,10 +1079,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": {},
       "description": "the total number of node's socket address updates",
       "fieldConfig": {
         "defaults": {
@@ -1142,9 +1122,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -1167,10 +1148,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1267,10 +1245,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1367,7 +1342,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
