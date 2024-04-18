@@ -5,6 +5,8 @@
 
 socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
 
+node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.6.1"
+
 # In all commands, We have to explicitly set the password again here because
 # when docker run loads the `.env` file, it keeps the quotes around the password
 # which causes the password to be incorrect.
@@ -23,7 +25,7 @@ optIn() {
   --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
   --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
   --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
-  ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.6.1 \
+  "$node_plugin_image" \
   --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
   --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
   --operation opt-in \
@@ -37,7 +39,7 @@ optOut() {
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
-    ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.6.1 \
+    "$node_plugin_image" \
     --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
     --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
     --operation opt-out \
@@ -52,11 +54,26 @@ listQuorums() {
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
-    ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.6.1 \
+    "$node_plugin_image" \
     --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
     --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
     --socket "$socket" \
     --operation list-quorums \
+    --quorum-id-list 0
+}
+
+updateSocket() {
+  # we have to pass a dummy quorum-id-list as it is required by the plugin
+  docker run --env-file .env \
+    --rm \
+    --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
+    --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
+    --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
+    "$node_plugin_image" \
+    --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
+    --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
+    --socket "$socket" \
+    --operation update-socket \
     --quorum-id-list 0
 }
 
@@ -76,6 +93,8 @@ elif [ "$1" = "opt-out" ]; then
   optOut "$2"
 elif [ "$1" = "list-quorums" ]; then
   listQuorums
+elif [ "$1" = "update-socket" ]; then
+  updateSocket
 else
   echo "Invalid command"
 fi
