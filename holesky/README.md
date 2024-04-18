@@ -229,7 +229,7 @@ docker compose up -d
 ```
 
 ## Running your node without giving access to operator ECDSA keys
-In [EigenDA v0.6.1](https://github.com/Layr-Labs/eigenda-operator-setup/releases/tag/v0.6.1), we added a feature where you can configure your node so that it doesn't need operator's ECDSA keys to run.
+In [EigenDA v0.6.2-rc.0](https://github.com/Layr-Labs/eigenda-operator-setup/releases/tag/v0.6.2-rc.0), we added a feature where you can configure your node so that it doesn't need operator's ECDSA keys to run.
 Your node still need access to BLS keys for attestation purposes.
 >**_NOTE:_** You still need ECDSA and BLS keys to opt-in to EigenDA.
 
