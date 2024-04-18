@@ -33,6 +33,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "noValue": "No batches found - Node is down or unreachable",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1117,6 +1118,6 @@
   "timezone": "",
   "title": "EigenDA",
   "uid": "dcd9d495-ff1e-4794-b2b6-62634e4b40d1",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
