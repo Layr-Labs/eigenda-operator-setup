@@ -13,12 +13,6 @@ node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.6.1"
 # To test that try running `docker run --rm --env-file .env busybox /bin/sh -c 'echo $NODE_ECDSA_KEY_PASSWORD'`
 # This will output password with single quote. Not sure why this happens.
 optIn() {
-  echo "checking and validating SRS"
-  ../srs_setup.sh
-  if [ $? -ne 0 ]; then
-    echo "Error: SRS setup failed. Exiting."
-    exit 1
-  fi
   echo "using socket: $socket"
   docker run --env-file .env \
   --rm \
