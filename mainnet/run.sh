@@ -62,6 +62,21 @@ listQuorums() {
     --quorum-id-list 0
 }
 
+updateSocket() {
+  # we have to pass a dummy quorum-id-list as it is required by the plugin
+  docker run --env-file .env \
+    --rm \
+    --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
+    --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
+    --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
+    "$node_plugin_image" \
+    --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
+    --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
+    --socket "$socket" \
+    --operation update-socket \
+    --quorum-id-list 0
+}
+
 if [ "$1" = "opt-in" ]; then
   if [ -z "$2" ]; then
     echo "Please provide quorum number (0/1/0,1)"
@@ -78,6 +93,8 @@ elif [ "$1" = "opt-out" ]; then
   optOut "$2"
 elif [ "$1" = "list-quorums" ]; then
   listQuorums
+elif [ "$1" = "update-socket" ]; then
+  updateSocket
 else
   echo "Invalid command"
 fi
