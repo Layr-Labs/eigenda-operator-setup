@@ -21,8 +21,7 @@ show_help() {
 }
 
 # Loop through command-line arguments
-# shellcheck disable=SC2039
-while [[ $# -gt 0 ]]; do
+while [ $# -gt 0 ]; do
     key="$1"
 
     case $key in
