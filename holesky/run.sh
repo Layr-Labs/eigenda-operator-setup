@@ -9,12 +9,27 @@ NODE_ECDSA_KEY_PASSWORD=""
 OPERATION_TYPE=""
 QUORUMS=""
 
+# Function to display usage information
+show_help() {
+    echo "Usage: $0 [options]"
+    echo "Options:"
+    echo "  -h, --help                            Display this help message"
+    echo "  --node-ecdsa-key-file-host <path>     Path to the node's ECDSA key file. Required for opt-in, opt-out and update-socket operations"
+    echo "  --node-ecdsa-key-password <password>  Password for the node's ECDSA key file. Required for opt-in, opt-out and update-socket operations"
+    echo "  --operation-type <operation>          Operation type (opt-in, opt-out, list-quorums, update-socket)"
+    echo "  --quorums <quorums>                   Quorum IDs to opt-in or opt-out"
+}
+
 # Loop through command-line arguments
 # shellcheck disable=SC2039
 while [[ $# -gt 0 ]]; do
     key="$1"
 
     case $key in
+        -h|--help)
+            show_help
+            exit 0
+            ;;
         --node-ecdsa-key-file-host)
             NODE_ECDSA_KEY_FILE_HOST="$2"
             shift
@@ -105,7 +120,6 @@ listQuorums() {
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
     "$node_plugin_image" \
-    --ecdsa-key-password "$NODE_ECDSA_KEY_PASSWORD" \
     --bls-key-password "$NODE_BLS_KEY_PASSWORD" \
     --socket "$socket" \
     --operation list-quorums \
