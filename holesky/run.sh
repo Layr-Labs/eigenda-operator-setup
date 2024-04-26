@@ -47,6 +47,7 @@ while [ $# -gt 0 ]; do
             ;;
         *)  # Unknown flag
             echo "Unknown option: $1"
+            show_help
             exit 1
             ;;
     esac
@@ -56,21 +57,25 @@ done
 # Check if flags are provided
 if [ -z "$OPERATION_TYPE" ]; then
     echo "--operation-type is required."
+    show_help
     exit 1
 fi
 
 if [ "$OPERATION_TYPE" != "list-quorums" ] && [ -z "$NODE_ECDSA_KEY_FILE_HOST" ]; then
     echo "--node-ecdsa-key-file-host is required."
+    show_help
     exit 1
 fi
 
 if [ "$OPERATION_TYPE" != "list-quorums" ] && [ -z "$NODE_ECDSA_KEY_PASSWORD" ]; then
     echo "--node-ecdsa-key-password is required."
+    show_help
     exit 1
 fi
 
 if { [ "$OPERATION_TYPE" = "opt-in" ] || [ "$OPERATION_TYPE" = "opt-out" ]; } && [ -z "$QUORUMS" ] ; then
     echo "--quorum is required for opt-in or opt-out operation."
+    show_help
     exit 1
 fi
 
@@ -154,4 +159,5 @@ elif [ "$OPERATION_TYPE" = "update-socket" ]; then
   updateSocket
 else
   echo "Invalid command"
+  show_helps
 fi
