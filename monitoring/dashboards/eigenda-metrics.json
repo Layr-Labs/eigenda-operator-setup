@@ -27,7 +27,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "1 being the highest",
+      "description": "1 being the highest.\n\n0 - you are not opted in that quorum",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -80,7 +80,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "node_registered_quorums{type=\"rank\"}",
+          "expr": "node_registered_quorums_rank",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -98,7 +98,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Divide by 100 to get %age stake",
+      "description": "Divide by 100 to get %age stake.\n\n0 for a quorum means you are opted out of that quorum",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -112,7 +112,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 25,
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -130,7 +130,7 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "normal"
+              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -181,10 +181,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "node_registered_quorums{type=\"stake_share\"}",
+          "exemplar": false,
+          "expr": "node_registered_quorums_stake_share",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
+          "interval": "",
           "legendFormat": "quorum {{quorum}}",
           "range": true,
           "refId": "A",
@@ -1180,7 +1182,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1280,7 +1283,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1380,7 +1384,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1432,20 +1437,20 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 38,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "EigenDA",
   "uid": "dcd9d495-ff1e-4794-b2b6-62634e4b40d1",
-  "version": 17,
+  "version": 28,
   "weekStart": ""
 }
