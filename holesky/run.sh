@@ -16,7 +16,7 @@ optIn() {
   echo "using socket: $socket"
   docker run --env-file .env \
   --rm \
-  --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
+#   --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
   --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
   --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
   "$node_plugin_image" \
@@ -30,7 +30,7 @@ optIn() {
 optOut() {
   docker run --env-file .env \
     --rm \
-    --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
+    # --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
     "$node_plugin_image" \
@@ -45,7 +45,7 @@ listQuorums() {
   # we have to pass a dummy quorum-id-list as it is required by the plugin
   docker run --env-file .env \
     --rm \
-    --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
+    # --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
     "$node_plugin_image" \
@@ -60,7 +60,7 @@ updateSocket() {
   # we have to pass a dummy quorum-id-list as it is required by the plugin
   docker run --env-file .env \
     --rm \
-    --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
+    # --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
     --volume "${NODE_BLS_KEY_FILE_HOST}":/app/operator_keys/bls_key.json \
     --volume "${NODE_LOG_PATH_HOST}":/app/logs:rw \
     "$node_plugin_image" \
