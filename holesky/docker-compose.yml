@@ -29,6 +29,8 @@ services:
     networks:
       - eigenda
     volumes:
+#      Uncomment the following line if you want Node to use ecdsa key. This is generally not recommended
+#      - "${NODE_ECDSA_KEY_FILE_HOST}:/app/operator_keys/ecdsa_key.json:readonly"
       - "${NODE_BLS_KEY_FILE_HOST}:/app/operator_keys/bls_key.json:readonly"
       - "${NODE_G1_PATH_HOST}:/app/g1.point:readonly"
       - "${NODE_G2_PATH_HOST}:/app/g2.point.powerOf2:readonly"
