@@ -90,7 +90,7 @@
           "useBackend": false
         }
       ],
-      "title": "Rank in Quorums",
+      "title": "Rank by TVL in Quorums",
       "type": "stat"
     },
     {
