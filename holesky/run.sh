@@ -81,7 +81,7 @@ fi
 
 socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
 
-node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.6.2"
+node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:release-0.7.0"
 
 # In all commands, We have to explicitly set the password again here because
 # when docker run loads the `.env` file, it keeps the quotes around the password
