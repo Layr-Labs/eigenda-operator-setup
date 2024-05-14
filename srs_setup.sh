@@ -10,20 +10,23 @@ if ! [ -f $NODE_G1_PATH_HOST ]; then
   echo "Downloading g1 point. This could take upto 5 minutes"
   wget https://srs-mainnet.s3.amazonaws.com/kzg/g1.point --output-document=$NODE_G1_PATH_HOST
   DOWNLOADED_FILE=true
+else
+  echo "g1.point already exists."
 fi
 
-if ! [ -f $NODE_G2_PATH_HOST ]; then
+if ! [ -f ./resources/g2.point.powerOf2 ]; then
   echo "g2.point.powerOf2 does not exist."
   echo "Downloading g2 point powerOf2. This will take few seconds"
-  wget https://srs-mainnet.s3.amazonaws.com/kzg/g2.point.powerOf2 --output-document=$NODE_G2_PATH_HOST
+  wget https://srs-mainnet.s3.amazonaws.com/kzg/g2.point.powerOf2 --output-document=./resources/g2.point.powerOf2
   DOWNLOADED_FILE=true
+else
+  echo "g2.point.powerOf2 already exists."
 fi
 
 # Any time we download the file, validate hashes
 if [ "$DOWNLOADED_FILE" = true ]; then
   echo "validating hashes of g1 and g2 points This could take upto 5 minutes"
-
-  CHECKSUM_FILE="../resources/srssha256sums.txt"
+  CHECKSUM_FILE="./resources/srssha256sums.txt"
 
   G1_CHECKSUM_EXPECTED=$(grep 'g1.point$' "$CHECKSUM_FILE" | awk '{print $1}')
   G2_CHECKSUM_EXPECTED=$(grep 'g2.point.powerOf2$' "$CHECKSUM_FILE" | awk '{print $1}')

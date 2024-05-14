@@ -1,4 +1,6 @@
 ## Setup monitoring using Docker
+<img width="1024" alt="image" src="https://github.com/Layr-Labs/eigenda-operator-setup/assets/354473/c7c3da8d-a488-441c-a70b-00ebf13e5028">
+
 ### Quickstart
 EigenDA provides a quickstart guide to run the Prometheus, Grafana, and Node exporter stack.
 Follow this section for more details for more details. If you want to manually set this up, follow the steps in [Manual Setup](./README.md#manual-setup) section.
