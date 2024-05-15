@@ -577,7 +577,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "",
+      "description": "Display reachability status of the node",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -590,12 +590,12 @@
                 "0": {
                   "color": "red",
                   "index": 1,
-                  "text": "UNREACHABLE"
+                  "text": "Unreachable"
                 },
                 "1": {
                   "color": "green",
                   "index": 0,
-                  "text": "ONLINE"
+                  "text": "Online"
                 }
               },
               "type": "value"
