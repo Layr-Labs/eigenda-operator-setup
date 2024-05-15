@@ -583,7 +583,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "noValue": "Reachability metrics not found",
+          "noValue": "Reachability metrics not found. Check logs for errors",
           "mappings": [
             {
               "options": {
