@@ -1,2 +1,3 @@
-## Installation of EigenDA using docker
-Coming soon...
+## Mainnet
+
+Head over to our [EigenDA operator guides](https://docs.eigenlayer.xyz/eigenda/operator-guides/overview) for installation instructions and more details.
