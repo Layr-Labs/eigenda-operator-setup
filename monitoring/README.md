@@ -72,7 +72,9 @@ scrape_configs:
     scrape_interval: 5s
 
     static_configs:
-      # Point to the same endpoint that EigenDA is publishing on
+      # Point to the same endpoint that EigenDA is publishing on.
+      # If using the sample docker-compose.yml for EigenDA, use the name of the
+      # container instead of localhost (e.g. da-node:9092)
       - targets: ["localhost:<NODE_METRICS_PORT>"]
 ```
 
