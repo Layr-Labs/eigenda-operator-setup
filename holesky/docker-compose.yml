@@ -19,6 +19,9 @@ services:
       - .env
     restart: unless-stopped
   da-node:
+    sysctls:
+      net.ipv4.tcp_window_scaling: 1
+      net.ipv4.tcp_rmem: "4096 131072 16000000"
     env_file:
       - .env
     container_name: ${MAIN_SERVICE_NAME}
