@@ -3,7 +3,7 @@
 
 . ./.env
 
-socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
+socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"\;"${NODE_V2_DISPERSAL_PORT}"
 
 node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.8.6"
 
