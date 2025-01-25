@@ -4,6 +4,7 @@ services:
     image: nginx:latest
     ports:
       - "${NODE_RETRIEVAL_PORT}:${NODE_RETRIEVAL_PORT}"
+      - "${NODE_V2_RETRIEVAL_PORT}:${NODE_V2_RETRIEVAL_PORT}"
       - "${NODE_API_PORT}:${NODE_API_PORT}"
     volumes:
       - "${NODE_NGINX_CONF_HOST}:/etc/nginx/templates/default.conf.template:ro"
@@ -25,6 +26,7 @@ services:
     image: ${MAIN_SERVICE_IMAGE}
     ports:
       - "${NODE_DISPERSAL_PORT}:${NODE_DISPERSAL_PORT}"
+      - "${NODE_V2_DISPERSAL_PORT}:${NODE_V2_DISPERSAL_PORT}"
       - "${NODE_METRICS_PORT}:${NODE_METRICS_PORT}"
     networks:
       - eigenda
