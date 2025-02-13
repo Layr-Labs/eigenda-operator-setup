@@ -13,7 +13,14 @@ node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.8.6"
 # To test that try running `docker run --rm --env-file .env busybox /bin/sh -c 'echo $NODE_ECDSA_KEY_PASSWORD'`
 # This will output password with single quote. Not sure why this happens.
 optIn() {
-  echo "using socket: $socket"
+  echo "You are about to opt-in to quorum: $1 with socket registration: $socket"
+  echo "Confirm? [y/N] "
+  read -r answer
+  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+    echo "Operation cancelled"
+    exit 1
+  fi
+
   docker run --env-file .env \
   --rm \
   --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
@@ -28,6 +35,14 @@ optIn() {
 }
 
 optOut() {
+  echo "You are about to opt-out from quorum: $1 with socket registration: $socket"
+  echo "Confirm? [y/N] "
+  read -r answer
+  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+    echo "Operation cancelled"
+    exit 1
+  fi
+
   docker run --env-file .env \
     --rm \
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
@@ -57,6 +72,14 @@ listQuorums() {
 }
 
 updateSocket() {
+  echo "You are about to update your socket registration to: $socket"
+  echo "Confirm? [y/N] "
+  read -r answer
+  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+    echo "Operation cancelled"
+    exit 1
+  fi
+
   # we have to pass a dummy quorum-id-list as it is required by the plugin
   docker run --env-file .env \
     --rm \

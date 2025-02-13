@@ -3,9 +3,20 @@
 
 . ./.env
 
-socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"\;"${NODE_V2_DISPERSAL_PORT}"\;"${NODE_V2_RETRIEVAL_PORT}"
+node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.9.0-pre.0"
 
-node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.8.6"
+# Check if V2 ports are defined
+if [ -z "$NODE_V2_DISPERSAL_PORT" ]; then
+  echo "ERROR: NODE_V2_DISPERSAL_PORT is not defined!"
+fi
+if [ -z "$NODE_V2_RETRIEVAL_PORT" ]; then
+  echo "ERROR: NODE_V2_RETRIEVAL_PORT is not defined!"
+fi
+if [ -z "$NODE_V2_DISPERSAL_PORT" ] || [ -z "$NODE_V2_RETRIEVAL_PORT" ]; then
+  echo "ERROR: Please update your .env file. See .env.example for reference."
+    exit 1
+fi
+socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"\;"${NODE_V2_DISPERSAL_PORT}"\;"${NODE_V2_RETRIEVAL_PORT}"
 
 # In all commands, We have to explicitly set the password again here because
 # when docker run loads the `.env` file, it keeps the quotes around the password
@@ -13,7 +24,14 @@ node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.8.6"
 # To test that try running `docker run --rm --env-file .env busybox /bin/sh -c 'echo $NODE_ECDSA_KEY_PASSWORD'`
 # This will output password with single quote. Not sure why this happens.
 optIn() {
-  echo "using socket: $socket"
+  echo "You are about to opt-in to quorum: $1 with socket registration: $socket"
+  echo "Confirm? [y/N] "
+  read -r answer
+  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+    echo "Operation cancelled"
+    exit 1
+  fi
+
   docker run --env-file .env \
   --rm \
   --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
@@ -28,6 +46,14 @@ optIn() {
 }
 
 optOut() {
+  echo "You are about to opt-out from quorum: $1 with socket registration: $socket"
+  echo "Confirm? [y/N] "
+  read -r answer
+  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+    echo "Operation cancelled"
+    exit 1
+  fi
+
   docker run --env-file .env \
     --rm \
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
@@ -58,6 +84,14 @@ listQuorums() {
 
 updateSocket() {
   # we have to pass a dummy quorum-id-list as it is required by the plugin
+  echo "You are about to update your socket to: $socket"
+  echo "Confirm? [y/N] "
+  read -r answer
+  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+    echo "Operation cancelled"
+    exit 1
+  fi
+
   docker run --env-file .env \
     --rm \
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
