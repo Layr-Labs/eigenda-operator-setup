@@ -3,7 +3,7 @@
 
 . ./.env
 
-socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"\;"${NODE_V2_DISPERSAL_PORT}"\;"${NODE_V2_RETRIEVAL_PORT}"
+socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"
 
 node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.8.6"
 
@@ -14,9 +14,9 @@ node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.8.6"
 # This will output password with single quote. Not sure why this happens.
 optIn() {
   echo "You are about to opt-in to quorum: $1 with socket registration: $socket"
-  echo "Confirm? [y/N] "
+  echo "Confirm? [Y/n] "
   read -r answer
-  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+  if [ "$answer" = "n" ] || [ "$answer" = "N" ]; then
     echo "Operation cancelled"
     exit 1
   fi
@@ -36,9 +36,9 @@ optIn() {
 
 optOut() {
   echo "You are about to opt-out from quorum: $1 with socket registration: $socket"
-  echo "Confirm? [y/N] "
+  echo "Confirm? [Y/n] "
   read -r answer
-  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+  if [ "$answer" = "n" ] || [ "$answer" = "N" ]; then
     echo "Operation cancelled"
     exit 1
   fi
@@ -73,9 +73,9 @@ listQuorums() {
 
 updateSocket() {
   echo "You are about to update your socket registration to: $socket"
-  echo "Confirm? [y/N] "
+  echo "Confirm? [Y/n] "
   read -r answer
-  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+  if [ "$answer" = "n" ] || [ "$answer" = "N" ]; then
     echo "Operation cancelled"
     exit 1
   fi
