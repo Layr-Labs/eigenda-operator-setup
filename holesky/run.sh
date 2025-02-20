@@ -25,9 +25,9 @@ socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"\;"${N
 # This will output password with single quote. Not sure why this happens.
 optIn() {
   echo "You are about to opt-in to quorum: $1 with socket registration: $socket"
-  echo "Confirm? [y/N] "
+  echo "Confirm? [Y/n] "
   read -r answer
-  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+  if [ "$answer" = "n" ] || [ "$answer" = "N" ]; then
     echo "Operation cancelled"
     exit 1
   fi
@@ -47,9 +47,9 @@ optIn() {
 
 optOut() {
   echo "You are about to opt-out from quorum: $1 with socket registration: $socket"
-  echo "Confirm? [y/N] "
+  echo "Confirm? [Y/n] "
   read -r answer
-  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+  if [ "$answer" = "n" ] || [ "$answer" = "N" ]; then
     echo "Operation cancelled"
     exit 1
   fi
@@ -85,9 +85,9 @@ listQuorums() {
 updateSocket() {
   # we have to pass a dummy quorum-id-list as it is required by the plugin
   echo "You are about to update your socket to: $socket"
-  echo "Confirm? [y/N] "
+  echo "Confirm? [Y/n] "
   read -r answer
-  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+  if [ "$answer" = "n" ] || [ "$answer" = "N" ]; then
     echo "Operation cancelled"
     exit 1
   fi
