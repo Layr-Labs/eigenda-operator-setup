@@ -51,7 +51,7 @@ Feb 20 19:50:46.760 INF grpc/server_v2.go:140 new StoreChunks request batchHeade
 ```
 
 ## V2 Remote BLS Signer API Migration
-With the release of `v0.9.0-rc.0`, the the node is upgraded to use the latest [cerberus](https://github.com/Layr-Labs/cerberus) remote BLS signer release.
+__Breaking Change:__ With the release of EigenDA Blazar (v2), the the node software has been upgraded to use the latest [cerberus](https://github.com/Layr-Labs/cerberus) remote BLS signer release.
 
 This change requires the operator to define the `NODE_BLS_SIGNER_API_KEY` environment variable.
 
