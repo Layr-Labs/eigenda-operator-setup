@@ -3,7 +3,7 @@
 
 . ./.env
 
-node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.9.0-rc.5"
+node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:0.9.0"
 
 # Check if V2 ports are defined
 if [ -z "$NODE_V2_DISPERSAL_PORT" ]; then
@@ -83,8 +83,7 @@ listQuorums() {
 }
 
 updateSocket() {
-  # we have to pass a dummy quorum-id-list as it is required by the plugin
-  echo "You are about to update your socket to: $socket"
+  echo "You are about to update your socket registration to: $socket"
   echo "Confirm? [Y/n] "
   read -r answer
   if [ "$answer" = "n" ] || [ "$answer" = "N" ]; then
@@ -92,6 +91,7 @@ updateSocket() {
     exit 1
   fi
 
+  # we have to pass a dummy quorum-id-list as it is required by the plugin
   docker run --env-file .env \
     --rm \
     --volume "${NODE_ECDSA_KEY_FILE_HOST}":/app/operator_keys/ecdsa_key.json \
