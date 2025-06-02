@@ -2,7 +2,6 @@
 
 Head over to our [EigenDA operator guides](https://docs.eigenlayer.xyz/eigenda/operator-guides/overview) for installation instructions and more details.
 
-
 ## Blazar (EigenDA V2) Migration
 Operators running node version `<=v0.8.6` will need to define new v2 specific environment variables, expose 2 new ports, and update their socket registration as part of the migration to v2.
 
@@ -82,3 +81,34 @@ This port is intended for Nginx reverse proxy use. It is not required if the ope
 ### `EIGENDA_INTERNAL_V2_RETRIEVAL_PORT`
 This port is intended for Nginx reverse proxy use. It is not required if the operator is not using a reverse proxy.
 
+
+## Advanced - Multi drive support for V2 LittDB
+
+LittDB is capable of partitioning the chunks DB across multiple drives.
+
+### Example .env that defines 2 littDB partitions
+```
+NODE_LITT_DB_STORAGE_HOST_PATH_1=${NODE_DB_PATH_HOST}/chunk_v2_litt_1
+NODE_LITT_DB_STORAGE_HOST_PATH_2=${NODE_DB_PATH_HOST}/chunk_v2_litt_2
+NODE_LITT_DB_STORAGE_PATHS=/data/operator/db/chunk_v2_litt_1,/data/operator/db/chunk_v2_litt_2
+```
+The `NODE_LITT_DB_STORAGE_HOST_PATH_X` should map to a separately mounted drive folder for each partition.
+The `NODE_LITT_DB_STORAGE_PATHS` needs to map to the docker volume mounts defined in `docker-compose.yaml`
+#### Example docker-compose volume mounts
+```
+   volumes:
+      - "${NODE_ECDSA_KEY_FILE_HOST}:/app/operator_keys/ecdsa_key.json:readonly"
+      - "${NODE_BLS_KEY_FILE_HOST}:/app/operator_keys/bls_key.json:readonly"
+      - "${NODE_G1_PATH_HOST}:/app/g1.point:readonly"
+      - "${NODE_G2_PATH_HOST}:/app/g2.point.powerOf2:readonly"
+      - "${NODE_CACHE_PATH_HOST}:/app/cache:rw"
+      - "${NODE_LOG_PATH_HOST}:/app/logs:rw"
+      - "${NODE_DB_PATH_HOST}:/data/operator/db:rw"
+      - "${NODE_LITT_DB_STORAGE_HOST_PATH_1}:/data/operator/db/chunk_v2_litt_1:rw"
+      - "${NODE_LITT_DB_STORAGE_HOST_PATH_2}:/data/operator/db/chunk_v2_litt_2:rw"
+```
+#### Example node output after loading both partitions
+```
+eigenda-native-node  | Jun  2 18:11:47.430 INF node/validator_store.go:108 Using littDB at paths /data/operator/db/chunk_v2_litt_1, /data/operator/db/chunk_v2_litt_2
+eigenda-native-node  | Jun  2 18:11:47.430 INF littbuilder/db_impl.go:118 LittDB started, current data size: 0
+eigenda-native-node  | Jun  2 18:11:47.430 INF littbuilder/db_impl.go:169 creating table chunks
