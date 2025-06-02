@@ -39,7 +39,7 @@ services:
       - "${NODE_LOG_PATH_HOST}:/app/logs:rw"
       - "${NODE_DB_PATH_HOST}:/data/operator/db:rw"
 #      - "${NODE_BLS_SIGNER_CERT_FILE_HOST}:/app/cerberus/cerberus.crt:readonly"
-      restart: unless-stopped
+    restart: unless-stopped
 networks:
   eigenda:
     name: ${NETWORK_NAME}
