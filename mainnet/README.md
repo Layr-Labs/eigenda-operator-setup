@@ -84,7 +84,7 @@ This port is intended for Nginx reverse proxy use. It is not required if the ope
 
 ## Advanced - Multi drive support for V2 LittDB
 
-LittDB is capable of partitioning the chunks DB across multiple drives.
+LittDB is capable of partitioning the chunks DB across multiple drives. See https://github.com/Layr-Labs/eigenda/blob/master/node/database-paths.md for more details.
 
 ### Example .env that defines 2 littDB partitions
 ```
