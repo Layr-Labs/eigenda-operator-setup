@@ -20,7 +20,7 @@ NODE_INTERNAL_V2_RETRIEVAL_PORT=${NODE_V2_RETRIEVAL_PORT}
 
 ### 2. Update `MAIN_SERVICE_IMAGE`
 ```
-MAIN_SERVICE_IMAGE=ghcr.io/layr-labs/eigenda/opr-node:0.9.0-rc.5
+MAIN_SERVICE_IMAGE=ghcr.io/layr-labs/eigenda/opr-node:0.9.0
 ```
 
 ### 3. Update socket registration
@@ -81,3 +81,34 @@ This port is intended for Nginx reverse proxy use. It is not required if the ope
 ### `EIGENDA_INTERNAL_V2_RETRIEVAL_PORT`
 This port is intended for Nginx reverse proxy use. It is not required if the operator is not using a reverse proxy.
 
+
+## Advanced - Multi drive support for V2 LittDB
+
+LittDB is capable of partitioning the chunks DB across multiple drives. See https://github.com/Layr-Labs/eigenda/blob/master/node/database-paths.md for more details.
+
+### Example .env that defines 2 littDB partitions
+```
+NODE_LITT_DB_STORAGE_HOST_PATH_1=${NODE_DB_PATH_HOST}/chunk_v2_litt_1
+NODE_LITT_DB_STORAGE_HOST_PATH_2=${NODE_DB_PATH_HOST}/chunk_v2_litt_2
+NODE_LITT_DB_STORAGE_PATHS=/data/operator/db/chunk_v2_litt_1,/data/operator/db/chunk_v2_litt_2
+```
+The `NODE_LITT_DB_STORAGE_HOST_PATH_X` should map to a separately mounted drive folder for each partition.
+The `NODE_LITT_DB_STORAGE_PATHS` needs to map to the docker volume mounts defined in `docker-compose.yaml`
+#### Example docker-compose volume mounts
+```
+   volumes:
+      - "${NODE_ECDSA_KEY_FILE_HOST}:/app/operator_keys/ecdsa_key.json:readonly"
+      - "${NODE_BLS_KEY_FILE_HOST}:/app/operator_keys/bls_key.json:readonly"
+      - "${NODE_G1_PATH_HOST}:/app/g1.point:readonly"
+      - "${NODE_G2_PATH_HOST}:/app/g2.point.powerOf2:readonly"
+      - "${NODE_CACHE_PATH_HOST}:/app/cache:rw"
+      - "${NODE_LOG_PATH_HOST}:/app/logs:rw"
+      - "${NODE_DB_PATH_HOST}:/data/operator/db:rw"
+      - "${NODE_LITT_DB_STORAGE_HOST_PATH_1}:/data/operator/db/chunk_v2_litt_1:rw"
+      - "${NODE_LITT_DB_STORAGE_HOST_PATH_2}:/data/operator/db/chunk_v2_litt_2:rw"
+```
+#### Example node output after loading both partitions
+```
+eigenda-native-node  | Jun  2 18:11:47.430 INF node/validator_store.go:108 Using littDB at paths /data/operator/db/chunk_v2_litt_1, /data/operator/db/chunk_v2_litt_2
+eigenda-native-node  | Jun  2 18:11:47.430 INF littbuilder/db_impl.go:118 LittDB started, current data size: 0
+eigenda-native-node  | Jun  2 18:11:47.430 INF littbuilder/db_impl.go:169 creating table chunks

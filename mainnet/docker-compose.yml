@@ -38,6 +38,8 @@ services:
       - "${NODE_CACHE_PATH_HOST}:/app/cache:rw"
       - "${NODE_LOG_PATH_HOST}:/app/logs:rw"
       - "${NODE_DB_PATH_HOST}:/data/operator/db:rw"
+# TODO: Uncomment and update if using remote BLS signer https://github.com/Layr-Labs/cerberus
+#      - "${NODE_BLS_SIGNER_CERT_FILE_HOST}:/app/cerberus/cerberus.crt:readonly"
     restart: unless-stopped
 networks:
   eigenda:
