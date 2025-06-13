@@ -25,8 +25,8 @@ services:
     container_name: ${MAIN_SERVICE_NAME}
     image: ${MAIN_SERVICE_IMAGE}
     ports:
-      - "${NODE_DISPERSAL_PORT}:${NODE_DISPERSAL_PORT}"
-      - "${NODE_V2_DISPERSAL_PORT}:${NODE_V2_DISPERSAL_PORT}"
+      - "${NODE_DISPERSAL_PORT}:${NODE_INTERNAL_DISPERSAL_PORT}"
+      - "${NODE_V2_DISPERSAL_PORT}:${NODE_INTERNAL_V2_DISPERSAL_PORT}"
       - "${NODE_METRICS_PORT}:${NODE_METRICS_PORT}"
     networks:
       - eigenda
