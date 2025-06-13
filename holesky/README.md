@@ -60,7 +60,7 @@ Follow the steps from the [cerberus setup guide](https://github.com/Layr-Labs/ce
 
 ## V2 Environment Variable Reference
 
-### `EIGENDA_RUNTIME_MODE`
+### `NODE_RUNTIME_MODE`
 This environment variable will be used to determine the runtime mode of the EigenDA node.
 
 - `v1-and-v2`: The node will serve both v1 and v2 traffic (default)
@@ -69,17 +69,17 @@ This environment variable will be used to determine the runtime mode of the Eige
 
 The `v1-only` & `v2-only` modes are intended for isolating traffic to separate validator instances - where 1 instance serves v1 traffic and a second instance serves v2 traffic.
 
-### `EIGENDA_V2_DISPERSAL_PORT`
+### `NODE_V2_DISPERSAL_PORT`
 <ins>Operators must publically expose this port</ins>. This port will be used to listen for dispersal requests from the EigenDA v2 API. IP whitelisting is no longer required with v2.
 
-### `EIGENDA_V2_RETRIEVAL_PORT`
+### `NODE_V2_RETRIEVAL_PORT`
 <ins>Operators must publically expose this port</ins>. This port will be used to listen for retrieval requests from the EigenDA v2 API.
 
-### `EIGENDA_INTERNAL_V2_DISPERSAL_PORT`
-This port is intended for Nginx reverse proxy use. It is not required if the operator is not using a reverse proxy.
+### `NODE_INTERNAL_V2_DISPERSAL_PORT`
+This port is intended for Nginx reverse proxy use.
 
-### `EIGENDA_INTERNAL_V2_RETRIEVAL_PORT`
-This port is intended for Nginx reverse proxy use. It is not required if the operator is not using a reverse proxy.
+### `NODE_INTERNAL_V2_RETRIEVAL_PORT`
+This port is intended for Nginx reverse proxy use.
 
 
 ## Advanced - Multi drive support for V2 LittDB
