@@ -1,12 +1,25 @@
 ## Mainnet Beta
 
-## IMPORTANT: Create mainnet-beta BLS key
-To prevent relay attacks, you must create a new BLS key for mainnet-beta. Your ECDSA key from mainnet will stay the same so that your delegated stake is shared between mainnet and mainnet-beta.
-
+## Create new mainnet-beta BLS key
+To prevent relay attacks, you must create a new BLS key for mainnet-beta.
 ```bash
 $ eigenlayer keys create --key-type bls mainnet-beta
 ? Enter password to encrypt the bls private key: ********************************
 ? Please confirm your password: ********************************
+```
+## Import your mainnet ECDSA key
+Your ECDSA key from mainnet needs to be imported so that your delegated stake is shared between mainnet and mainnet-beta.
+```bash
+$ eigenlayer keys import --key-type ecdsa mainnet <private-key>
+? Enter password to encrypt the ecdsa private key: ********************************
+? Please confirm your password: ********************************
+```
+
+## Confirm key locations
+```bash
+$ eigenlayer keys list | grep location
+Key location: /home/ubuntu/.eigenlayer/operator_keys/mainnet-beta.bls.key.json
+Key location: /home/ubuntu/.eigenlayer/operator_keys/mainnet.ecdsa.key.json
 ```
 
 ## Create a new env
@@ -15,7 +28,7 @@ cp .env.example .env
 ```
 Go thru the `.env` and update any TODOs listed in comments
 
-In your `.env` make sure specify the new mainnet-beta bls key
+In your `.env` ensure that the key vars map to the correct key names/locations created earlier
 ```
 # NOTE: Your mainnet-beta ECDSA key should match your mainnet ECDSA key
 NODE_ECDSA_KEY_FILE_HOST=${EIGENLAYER_HOME}/operator_keys/mainnet.ecdsa.key.json
@@ -31,7 +44,9 @@ Ensure your `NODE_RUNTIME_MODE=v2-only` in your `.env`
 ## Socket registration
 You will still need to declare V1 ports (they will not be used) because socket registration still requires them.
 
-
+```bash
+$ ./run.sh update-socket
+```
 ## Optional - Multi drive support for V2 LittDB
 
 LittDB is capable of partitioning the chunks DB across multiple drives. See https://github.com/Layr-Labs/eigenda/blob/master/node/database-paths.md for more details.
