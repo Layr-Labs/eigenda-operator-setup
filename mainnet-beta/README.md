@@ -1,5 +1,6 @@
 ## Mainnet Beta
-
+Head over to our [EigenDA operator guides](https://docs.eigencloud.xyz/products/eigenda/operator-guides/overview) for installation instructions and more details.
+## Mainnet Beta specific instructions & requirements
 ### Create new mainnet-beta BLS key
 You must create a new unique BLS key for mainnet-beta.
 ```bash
