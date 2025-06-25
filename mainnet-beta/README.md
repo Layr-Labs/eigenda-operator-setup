@@ -1,28 +1,26 @@
 ## Mainnet Beta
 
-## Create new mainnet-beta BLS key
-To prevent relay attacks, you must create a new BLS key for mainnet-beta.
+### Create new mainnet-beta BLS key
+You must create a new unique BLS key for mainnet-beta.
 ```bash
 $ eigenlayer keys create --key-type bls mainnet-beta
 ? Enter password to encrypt the bls private key: ********************************
 ? Please confirm your password: ********************************
 ```
-## Import your mainnet ECDSA key
+### Import your mainnet ECDSA key
 Your ECDSA key from mainnet needs to be imported so that your delegated stake is shared between mainnet and mainnet-beta.
 ```bash
 $ eigenlayer keys import --key-type ecdsa mainnet <private-key>
 ? Enter password to encrypt the ecdsa private key: ********************************
 ? Please confirm your password: ********************************
 ```
-
-## Confirm key locations
+### Confirm key locations
 ```bash
 $ eigenlayer keys list | grep location
 Key location: /home/ubuntu/.eigenlayer/operator_keys/mainnet-beta.bls.key.json
 Key location: /home/ubuntu/.eigenlayer/operator_keys/mainnet.ecdsa.key.json
 ```
-
-## Create a new env
+### Create a new env
 ```bash
 cp .env.example .env
 ```
@@ -35,17 +33,21 @@ NODE_ECDSA_KEY_FILE_HOST=${EIGENLAYER_HOME}/operator_keys/mainnet.ecdsa.key.json
 # NOTE: Make sure to reference the mainnet-beta specific BLS key
 NODE_BLS_KEY_FILE_HOST=${EIGENLAYER_HOME}/operator_keys/mainnet-beta.bls.key.json
 ```
-
-## Node Runtime Mode
+### Node Runtime Mode
 The mainnet-beta environment only supports V2 Blazar
 
 Ensure your `NODE_RUNTIME_MODE=v2-only` in your `.env`
 
-## Socket registration
+### Socket registration
 You will still need to declare V1 ports (they will not be used) because socket registration still requires them.
 
 ```bash
 $ ./run.sh update-socket
+```
+
+### Start the node
+```bash
+docker compose up -d
 ```
 ## Optional - Multi drive support for V2 LittDB
 
