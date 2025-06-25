@@ -1,6 +1,6 @@
 ## Mainnet
 
-Head over to our [EigenDA operator guides](https://docs.eigenlayer.xyz/eigenda/operator-guides/overview) for installation instructions and more details.
+Head over to our [EigenDA operator guides](https://docs.eigencloud.xyz/products/eigenda/operator-guides/overview) for installation instructions and more details.
 
 ## Blazar (EigenDA V2) Migration
 Operators running node version `<=v0.8.6` will need to define new v2 specific environment variables, expose 2 new ports, and update their socket registration as part of the migration to v2.
