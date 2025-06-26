@@ -39,24 +39,18 @@ The mainnet-beta environment only supports V2 Blazar
 
 Ensure your `NODE_RUNTIME_MODE=v2-only` in your `.env`
 
-### Socket registration
-Running with `v2-only` mode will disable auto IP updates, so you will need to ensure that your `NODE_HOSTNAME` is set to a stable IP or DNS in your `.env`
+### Socket configuration
+Running with `v2-only` mode will disable auto IP updates, so you will need to ensure that your `NODE_HOSTNAME` is set to a stable IP or DNS in your `.env` before opting into a quorum and running the node.
 
 To determine your public IP
 ```bash
 $ curl -s ipinfo.io | grep ip\"
   "ip": "75.2.70.75"
   ```
-
 Update your `.env` with your public IP
 ```
 # TODO: IP of your node
 NODE_HOSTNAME=75.2.70.75
-```
-NOTE: You will still need to declare V1 ports (they will not be used) because socket registration still requires them.
-
-```bash
-$ ./run.sh update-socket
 ```
 
 ### Opt into quorums
@@ -68,6 +62,7 @@ $ ./run.sh opt-in 0,1
 ```bash
 $ docker compose up -d
 ```
+
 ## Optional - Multi drive support for V2 LittDB
 
 LittDB is capable of partitioning the chunks DB across multiple drives. See https://github.com/Layr-Labs/eigenda/blob/master/node/database-paths.md for more details.
