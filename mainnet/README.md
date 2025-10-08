@@ -20,7 +20,7 @@ NODE_INTERNAL_V2_RETRIEVAL_PORT=${NODE_V2_RETRIEVAL_PORT}
 
 ### 2. Update `MAIN_SERVICE_IMAGE`
 ```
-MAIN_SERVICE_IMAGE=ghcr.io/layr-labs/eigenda/opr-node:2.2.0
+MAIN_SERVICE_IMAGE=ghcr.io/layr-labs/eigenda/opr-node:2.3.1
 ```
 
 ### 3. Update socket registration
