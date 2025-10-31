@@ -201,7 +201,7 @@
           "annotations": {
             "__dashboardUid__": "dcd9d495-ff1e-4794-b2b6-62634e4b40d1",
             "__panelId__": "9",
-            "description": "Number of signed batches are not increasing. Take a look at logs and see if you are signing. If your node is not receiving any traffic then you might not be signing. You may want to check https://blobs-holesky.eigenda.xyz/ to see if there are confirmed blobs. If yes, then you are missing out from serving these batches.  Please check the runbook for further debugging.",
+            "description": "Number of signed batches are not increasing. Take a look at logs and see if you are signing. If your node is not receiving any traffic then you might not be signing. You may want to check https://blobs-hoodi.eigenda.xyz/ to see if there are confirmed blobs. If yes, then you are missing out from serving these batches.  Please check the runbook for further debugging.",
             "runbook_url": "https://docs.eigenlayer.xyz/operator-guides/avs-installation-and-registration/eigenda-operator-guide/",
             "summary": "Number of signed batches are not increasing. This could be due to your node not being able to receive traffic"
           },
