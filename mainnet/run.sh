@@ -3,7 +3,7 @@
 
 . ./.env
 
-node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:2.5.0"
+node_plugin_image="ghcr.io/layr-labs/eigenda/opr-nodeplugin:2.6.0"
 
 # Check if V2 ports are defined
 if [ -z "$NODE_V2_DISPERSAL_PORT" ]; then
