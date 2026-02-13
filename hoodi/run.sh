@@ -16,7 +16,7 @@ if [ -z "$NODE_V2_DISPERSAL_PORT" ] || [ -z "$NODE_V2_RETRIEVAL_PORT" ]; then
   echo "ERROR: Please update your .env file. See .env.example for reference."
     exit 1
 fi
-socket="$NODE_HOSTNAME":"${NODE_DISPERSAL_PORT}"\;"${NODE_RETRIEVAL_PORT}"\;"${NODE_V2_DISPERSAL_PORT}"\;"${NODE_V2_RETRIEVAL_PORT}"
+socket="$NODE_HOSTNAME":"${NODE_V2_DISPERSAL_PORT}"\;"${NODE_V2_RETRIEVAL_PORT}"\;"${NODE_V2_DISPERSAL_PORT}"\;"${NODE_V2_RETRIEVAL_PORT}"
 
 # In all commands, We have to explicitly set the password again here because
 # when docker run loads the `.env` file, it keeps the quotes around the password
