@@ -43,10 +43,7 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -116,10 +113,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": "${DS_PROMETHEUS}",
       "description": "The performance metric is a score between 0 and 100 and each developer can define their own way of calculating the score. The score is calculated based on the performance of the Node and the performance of the backing services.",
       "fieldConfig": {
         "defaults": {
@@ -194,10 +188,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -508,10 +499,7 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Average Response Time per method in seconds over time.",
       "fieldConfig": {
         "defaults": {
@@ -605,10 +593,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Total of JSON-RPC requests per method.",
       "fieldConfig": {
         "defaults": {
@@ -698,10 +683,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Request duration distribution in seconds per method.",
       "fieldConfig": {
         "defaults": {
@@ -814,6 +796,21 @@
         "skipUrlSync": false,
         "sort": 2,
         "type": "query"
+      },
+      {
+        "name": "DS_PROMETHEUS",
+        "type": "datasource",
+        "query": "prometheus",
+        "current": {
+          "value": "prometheus",
+          "text": "Prometheus"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "regex": "",
+        "skipUrlSync": false
       }
     ]
   },
