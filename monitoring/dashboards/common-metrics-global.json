@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 9,
+  "id": 33,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -43,7 +43,10 @@
       "type": "row"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "b302edf0-9e83-4376-bead-778f0a2c9f35"
+      },
       "description": "The performance metric is a score between 0 and 100 and each developer can define their own way of calculating the score. The score is calculated based on the performance of the Node and the performance of the backing services.",
       "fieldConfig": {
         "defaults": {
@@ -73,7 +76,8 @@
                 "value": 90
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -85,6 +89,8 @@
       },
       "id": 8,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -94,15 +100,13 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.3.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": "${DS_PROMETHEUS}",
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "eigen_performance_score",
@@ -131,10 +135,7 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Average Response Time per method in seconds over time.",
       "fieldConfig": {
         "defaults": {
@@ -142,6 +143,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -185,7 +187,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -210,10 +213,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": "${DS_PROMETHEUS}",
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "rate(eigen_rpc_request_duration_seconds_sum[5m])",
@@ -229,7 +229,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "b302edf0-9e83-4376-bead-778f0a2c9f35"
+      },
       "description": "Total of JSON-RPC requests per method.",
       "fieldConfig": {
         "defaults": {
@@ -237,6 +240,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -276,7 +280,8 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -301,10 +306,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": "${DS_PROMETHEUS}",
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "eigen_rpc_request_total",
@@ -320,7 +322,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "b302edf0-9e83-4376-bead-778f0a2c9f35"
+      },
       "description": "Request duration distribution in seconds per method.",
       "fieldConfig": {
         "defaults": {
@@ -351,7 +356,8 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "none",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -378,10 +384,7 @@
       "pluginVersion": "9.4.3",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
+          "datasource": "${DS_PROMETHEUS}",
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
@@ -402,11 +405,29 @@
   ],
   "refresh": "",
   "revision": 1,
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "name": "DS_PROMETHEUS",
+        "type": "datasource",
+        "query": "prometheus",
+        "current": {
+          "selected": false,
+          "text": "prometheus",
+          "value": "prometheus"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "options": [],
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false
+      }
+    ]
   },
   "time": {
     "from": "now-15m",
@@ -416,6 +437,6 @@
   "timezone": "",
   "title": "Global AVS Specification Metrics",
   "uid": "EGNMTP88z",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }
